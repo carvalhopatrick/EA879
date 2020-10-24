@@ -1,0 +1,3 @@
+Oficina 3 - Flex
+------------------------------
+Nesta oficina veremos como funciona a primeira etapa na construção de um compilador, a análise léxica. Veremos como usar um "compilador de compiladores", o Flex, para construir um analisador léxico. Para isso, aplicaremos nossos conhecimentos sobre expressões regulares.

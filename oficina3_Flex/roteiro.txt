@@ -1,0 +1,68 @@
+Oficina 3 - Flex
+------------------------------
+Como usar este roteiro?
+
+Siga atentamente os itens do roteiro
+
+Siga os itens em ordem: alguns itens dependem dos itens anteriores
+
+As perguntas que estão *neste arquivo* são para reflexão e não precisarão ser submetidas
+
+Os itens marcados com => são os que geram arquivos para submissão junto com a tarefa
+
+------------------------------
+
+Linguagens de programação "leves" tem uma espeficificação léxica e sintática simplificada em comparação com linguagens convencionais. Uma dessas linguagens é lua, criada por três professores da PUC-Rio no início da década de 1990, e que se tornou popular para scripting de aplicações interativas, como jogos e TV.
+
+
+1. Considere as especificações léxicas da linguagem lua em https://www.lua.org/manual/5.1/manual.html (seção 2.1) ou no arquivo lua-lexical.txt, com as seguintes simplificações:
+
+    - Só letras ASCII são admitidas para identificadores/nomes (independente do locale)
+    - Strings não contém escapes decimais (\000)
+
+
+2. Utilizando como base o código lua-lexer-inicial.l, crie um arquivo lua-lexer.l completando e modificando as seções indicadas (você pode fazer uma busca pela palavra "complete" para verificar se não esqueceu nada).
+
+- Estude o código com cuidado: as partes já prontas podem muito bem servir de inspiração para completar as partes que faltam.
+
+- Você pode resolver o problema por partes (e.g., só os números), criando um arquivo auxiliar com um subconjunto pequeno das definições e ações. Pode ser mais fácil fazer dessa forma, por exemplo, para depurar as expressões regulares.
+
+- Não modifique a lógica do lexer para além das seções a serem completadas (i.e., não resolva o problema de uma forma completamente diferente da proposta). Desculpe-me tolher sua criatividade, mas é preciso tornar a correção pelos pares exequível.
+
+
+3. Prepare o lexer com os comandos
+
+    flex lua-lexer.l
+    gcc -o lua-lexer lua-lexer.c -Wall
+
+    (O warning "-s option given but default rule can be matched" no primeiro comando é esperado.)
+
+
+4. Teste o seu lexer. Você pode fazer um teste simples com
+
+    ./lua-lexer < hello.lua
+
+    Um teste mais complexo pode ser feito com
+
+    ./lua-lexer < markov.lua > markov.tokens
+    diff markov.tokens markov.tokens.reference
+
+    Se seu programa estiver perfeito, o diff deve retornar vazio. Você pode fazer um rigoroso teste do seu lexer, repetindo o comando acima trocando markov por numbers, string, e operators.
+
+    Durante o desenvolvimento, para depuração, pode ser útil testar seu lexer de forma interativa, usando a entrada padrão. Use o comando...
+
+    ./lua-lexer
+
+    ...e você poderá digitar o input diretamente no teclado, observando os resultados aos poucos (digite ctrl-D para marcar o final da entrada).
+
+    O arquivo errors.lua contém exemplos de erros léxicos, que o lexer deveria, em princípio, ser capaz de detectar. Use-o para sua curiosidade, a rubrica de correção não exigirá tratamento de erros.
+
+
+5 => Submeta o arquivo fonte do Flex lua-lexer.l. Atenção: cuidado para não submeter o fonte .c gerado pelo flex! Submeta o fonte do Flex! Cuidado também para não submeter o fonte inicial sem as modificações.
+
+
+6. Pense em todas as possíveis constantes numéricas em lua. Elas formam uma linguagem regular?
+
+   Pense em todas as possíveis constantes string em lua. Elas formam uma linguagem regular?
+
+   Pense nas respostas acima. Você acha que elas influenciam, na prática, na implementação do reconhecimento desses dois tipos de constante no lexer? Como?

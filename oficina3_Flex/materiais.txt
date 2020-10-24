@@ -1,0 +1,14 @@
+Oficina 3 - Flex
+------------------------------
+Materiais necessários
+
+1. Acesso a um terminal Linux de linha de comando
+2. As ferramentas: gcc, flex
+3. Os comandos do sistema: cat, ls
+4. Um editor de textos
+
+Materiais opcionais úteis
+
+- Para visualizar com conforto arquivos e saídas grandes: more, less
+- Para encontrar strings facilmente em arquivos e saídas: grep
+- Para comparar com a implementação de referência (por curiosidade): o interpretador lua original

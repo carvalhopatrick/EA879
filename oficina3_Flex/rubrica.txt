@@ -1,0 +1,45 @@
+Oficina 3 - Flex
+------------------------------
+Utilize esta rubrica para verificar seu próprio trabalho e o trabalho do colega.
+------------------------------
+Rubrica:
+
+Se a nota do trabalho chegar a 0 em algum momento, você não deve continuar a correção. Por exemplo, se na etapa 2 você atribuir a nota 0, justifique citando esta etapa da rubrica e interrompa a correção.
+
+No campo de justificativa, mencione os itens da rubrica que levaram a eventuais descontos de pontos. No caso do item 6, mencione quais declarações exatamente estão erradas.
+
+
+1. Verifique se o arquivo lua-lexer.l foi corretamente submetido. Atribua nota 0 ao trabalho nas seguintes situações: foi submetido o lexer gerado em C mas não o fonte do Flex; foi submetido o fonte inicial sem modificações; foi submetido um fonte que o Flex não compila (warnings são okay, mas erros não), foi submetido um fonte que gera um lexer que o gcc não compila (warnings okay, erros não).
+
+
+2. Abra o arquivo lua-lexer.l e compare-o visualmente com o arquivo de referencia lua-lexer-inicial.l. Se houve modificações na lógica do programa fora das regiões a serem completadas, atribua nota 0 ao trabalho. (Mas não seja cri-cri e anule o exercício do colega só porque ele esbarrou em um espaço, colocou um comentário, ou adicionou uma linha em branco. Use o bom senso.) Atribua também nota 0 ao trabalho nesta fase se o código fonte estiver ilegível (e.g., a indentação houver sido destruída).
+
+
+3. Execute os comandos...
+
+    ./lua-lexer < hello.lua > hello.tokens
+    cat hello.tokens
+    diff hello.tokens hello.tokens.reference
+
+...e seus variantes, trocando hello por markov, numbers, string, e operators.
+
+
+4. Se os diffs retornarem todos vazios atribua nota 10 ao trabalho e interrompa a correção.
+
+
+5. Se o resultado estiver catastroficamente errado (e.g., nem mesmo o hello.lua é analisado até o final, o mesmo valor é retornado para todos os tokens, os conteúdos retornam todos vazios, etc.) atribua nota 0 ao trabalho.
+
+
+6. Se o resultado estiver minimamente aceitável, abra o código fonte novamente e compare as expressões regulares propostas pelo colega com as expressões regulares de referência na solução final. Desconte um ponto para cada uma das declarações originais IDENTIFIER, ESCAPE_NEWLINE, SINGLE_QUOTE, DOUBLE_QUOTE, OPEN_LONG, CLOSE_LONG, NUMBER, NUMBER_HEXA, DOUBLE_HYPHEN que não for equivalente à implementação de referência.
+
+Faça o mesmo para as declarações ESCAPE e WHITESPACE, mas seja um pouco mais leniente: elas não precisam ser *exatamente* equivalentes às implementações de referência, mas elas não podem ser absurdas.
+
+
+7. Desconte um ponto se a lógica de numeração de linhas estiver errada.
+
+
+8. Desconte um ponto se a lógica de strings estiver errada.
+
+
+9. Desconte um ponto se a lógica de comentários estiver errada.
+
