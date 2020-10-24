@@ -213,7 +213,8 @@ while    return WHILE;
     comment_start = Comment_start_short;
 }
 <comment_context>{OPEN_LONG} {
-    <<<complete o codigo>>>
+    if (start_of_comment)
+    comment_start = false;
 }
 <comment_context>{CLOSE_LONG} {
     <<<complete o codigo>>>

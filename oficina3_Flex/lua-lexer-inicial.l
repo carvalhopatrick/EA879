@@ -67,6 +67,7 @@ NUMBER_HEXA     0[xX][a-fA-F0-9]+
 DOUBLE_HYPHEN   --
 WHITESPACE      [ \t\v]+
 EOL             [ \n\r]+
+/* " */
 
 %x string_context comment_context long_comment_context short_comment_context
 
@@ -148,7 +149,6 @@ while    return WHILE;
 }
 
 <string_context>{ESCAPE} {
-    // <<<complete o codigo>>> DONE
     accumulate_string("\\");
     accumulate_string(yytext);
 }
@@ -175,7 +175,7 @@ while    return WHILE;
 <string_context>{ESCAPE_BRACKET} {
     // Lua permite escapar brackets ( "\[""  e  "\]"" ) dentro da string, mas C não permite
     char c[2];
-    c[0] = yytext[1]
+    c[0] = yytext[1];
     c[1] = '\0';
     accumulate_string(c);
 }
@@ -236,26 +236,46 @@ while    return WHILE;
     comment_start = Comment_start_short;
 }
 <comment_context>{OPEN_LONG} {
-    // <<<complete o codigo>>>
+    start_of_comment = false;
+    if (start_of_comment) {
+        comment_start = (strlen(yytext) - 1);
+    }
 }
 <comment_context>{CLOSE_LONG} {
-    // <<<complete o codigo>>>
+    start_of_comment = false;
+    if ((strlen(yytext) - 1) == comment_start) {
+        // end comment??
+        return 999;
+    } 
 }
 <comment_context>\n {
-    // <<<complete o codigo>>>
+    start_of_comment = false;
+    if (comment_start <= 0){
+        // end comment??
+        return 999;
+    } else {
+        line_number++;
+        yymore();
+    }
 }
 <comment_context>. {
     start_of_comment = false;
+    yymore();
 }
 <comment_context><<EOF>> {
-    // <<<complete o codigo>>>
+    if (comment_start > 0){
+        lex_error("unterminated long comment");
+    } else {
+        // end comment??
+        return END_OF_INPUT;
+    }
 }
 
  /* --- Whitespace */
 
-\n    /* <<<complete com a acao correta>>> */
+\n    line_number++;
 
-{WHITESPACE} /* <<<complete com a acao correta>>> */
+{WHITESPACE} /* não faz nada */ 
 
  /* --- Everything else */
 

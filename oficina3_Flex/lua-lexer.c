@@ -374,7 +374,8 @@ static void yy_fatal_error (yyconst char msg[]  );
  */
 #define YY_DO_BEFORE_ACTION \
 	(yytext_ptr) = yy_bp; \
-	yyleng = (size_t) (yy_cp - yy_bp); \
+	(yytext_ptr) -= (yy_more_len); \
+	yyleng = (size_t) (yy_cp - (yytext_ptr)); \
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
@@ -573,8 +574,10 @@ int yy_flex_debug = 0;
  * any uses of REJECT which flex missed.
  */
 #define REJECT reject_used_but_not_detected
-#define yymore() yymore_used_but_not_detected
-#define YY_MORE_ADJ 0
+static int yy_more_flag = 0;
+static int yy_more_len = 0;
+#define yymore() ((yy_more_flag) = 1)
+#define YY_MORE_ADJ (yy_more_len)
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "lua-lexer-inicial.l"
@@ -626,7 +629,7 @@ void lex_error(const char *message, ...);
 
 /* --------- Lexer declarations */
 
-#line 630 "lua-lexer.c"
+#line 633 "lua-lexer.c"
 
 #define INITIAL 0
 #define string_context 1
@@ -853,10 +856,16 @@ YY_DECL
 
  /* --- Tokens with fixed contents should simply return the correct TokenType */
 
-#line 857 "lua-lexer.c"
+#line 860 "lua-lexer.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
+		(yy_more_len) = 0;
+		if ( (yy_more_flag) )
+			{
+			(yy_more_len) = (yy_c_buf_p) - (yytext_ptr);
+			(yy_more_flag) = 0;
+			}
 		yy_cp = (yy_c_buf_p);
 
 		/* Support of yytext. */
@@ -1190,14 +1199,13 @@ case 54:
 YY_RULE_SETUP
 #line 150 "lua-lexer-inicial.l"
 {
-    // <<<complete o codigo>>> DONE
     accumulate_string("\\");
     accumulate_string(yytext);
 }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 155 "lua-lexer-inicial.l"
+#line 154 "lua-lexer-inicial.l"
 {
     line_number++;              //pq??? @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     accumulate_string("\\n");
@@ -1205,7 +1213,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 159 "lua-lexer-inicial.l"
+#line 158 "lua-lexer-inicial.l"
 {    
     // Lua permite escapes do tipo "\48" no meio da string, que deve substituir pelo caracter equivalente a 48 em ascii (no caso, 0)
     char* strAscii;
@@ -1225,18 +1233,18 @@ YY_RULE_SETUP
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 175 "lua-lexer-inicial.l"
+#line 174 "lua-lexer-inicial.l"
 {
     // Lua permite escapar brackets ( "\[""  e  "\]"" ) dentro da string, mas C não permite
     char c[2];
-    c[0] = yytext[1]
+    c[0] = yytext[1];
     c[1] = '\0';
     accumulate_string(c);
 }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 182 "lua-lexer-inicial.l"
+#line 181 "lua-lexer-inicial.l"
 {
     if (string_start == String_start_single) {
         BEGIN(INITIAL);
@@ -1250,14 +1258,21 @@ YY_RULE_SETUP
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 192 "lua-lexer-inicial.l"
+#line 191 "lua-lexer-inicial.l"
 {
-    // <<<complete o codigo>>>
+    if (string_start == String_start_double) {
+        BEGIN(INITIAL);
+        stop_string();
+        return STRING;
+    }
+    else {
+        accumulate_string(yytext);
+    }
 }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 195 "lua-lexer-inicial.l"
+#line 201 "lua-lexer-inicial.l"
 {
     if (string_start == strlen(yytext)) {
         BEGIN(INITIAL);
@@ -1272,7 +1287,7 @@ YY_RULE_SETUP
 case 61:
 /* rule 61 can match eol */
 YY_RULE_SETUP
-#line 205 "lua-lexer-inicial.l"
+#line 211 "lua-lexer-inicial.l"
 {
     line_number++;
     if (string_start >= 0) {
@@ -1285,20 +1300,20 @@ YY_RULE_SETUP
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 214 "lua-lexer-inicial.l"
+#line 220 "lua-lexer-inicial.l"
 {
     lex_error("invalid escape sequence: %s", yytext);
 }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 217 "lua-lexer-inicial.l"
+#line 223 "lua-lexer-inicial.l"
 {
     accumulate_string(yytext);
 }
 	YY_BREAK
 case YY_STATE_EOF(string_context):
-#line 220 "lua-lexer-inicial.l"
+#line 226 "lua-lexer-inicial.l"
 {
     lex_error("unterminated string");
 }
@@ -1306,7 +1321,7 @@ case YY_STATE_EOF(string_context):
 /* --- Comments */
 case 64:
 YY_RULE_SETUP
-#line 226 "lua-lexer-inicial.l"
+#line 232 "lua-lexer-inicial.l"
 {
     BEGIN(comment_context);
     start_of_comment = true;
@@ -1315,65 +1330,85 @@ YY_RULE_SETUP
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 231 "lua-lexer-inicial.l"
+#line 237 "lua-lexer-inicial.l"
 {
-    // <<<complete o codigo>>>
+    start_of_comment = false;
+    if (start_of_comment) {
+        comment_start = (strlen(yytext) - 1);
+    }
 }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 234 "lua-lexer-inicial.l"
+#line 243 "lua-lexer-inicial.l"
 {
-    // <<<complete o codigo>>>
+    start_of_comment = false;
+    if ((strlen(yytext) - 1) == comment_start) {
+        // end comment??
+        return 999;
+    } 
 }
 	YY_BREAK
 case 67:
 /* rule 67 can match eol */
 YY_RULE_SETUP
-#line 237 "lua-lexer-inicial.l"
+#line 250 "lua-lexer-inicial.l"
 {
-    // <<<complete o codigo>>>
+    start_of_comment = false;
+    if (comment_start <= 0){
+        // end comment??
+        return 999;
+    } else {
+        line_number++;
+        yymore();
+    }
 }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 240 "lua-lexer-inicial.l"
+#line 260 "lua-lexer-inicial.l"
 {
     start_of_comment = false;
+    yymore();
 }
 	YY_BREAK
 case YY_STATE_EOF(comment_context):
-#line 243 "lua-lexer-inicial.l"
+#line 264 "lua-lexer-inicial.l"
 {
-    // <<<complete o codigo>>>
+    if (comment_start > 0){
+        lex_error("unterminated long comment");
+    } else {
+        // end comment??
+        return END_OF_INPUT;
+    }
 }
 	YY_BREAK
 /* --- Whitespace */
 case 69:
 /* rule 69 can match eol */
 YY_RULE_SETUP
-#line 249 "lua-lexer-inicial.l"
-/* <<<complete com a acao correta>>> */
+#line 275 "lua-lexer-inicial.l"
+line_number++;
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 251 "lua-lexer-inicial.l"
-/* <<<complete com a acao correta>>> */
+#line 277 "lua-lexer-inicial.l"
+/* não faz nada */ 
 	YY_BREAK
 /* --- Everything else */
 case 71:
 YY_RULE_SETUP
-#line 255 "lua-lexer-inicial.l"
+#line 281 "lua-lexer-inicial.l"
 {
     lex_error("unrecognized symbol: %s", yytext);
 }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 259 "lua-lexer-inicial.l"
+#line 285 "lua-lexer-inicial.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1377 "lua-lexer.c"
+#line 1412 "lua-lexer.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(long_comment_context):
 case YY_STATE_EOF(short_comment_context):
@@ -2376,7 +2411,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 259 "lua-lexer-inicial.l"
+#line 285 "lua-lexer-inicial.l"
 
 
 
