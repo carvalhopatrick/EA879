@@ -1,6 +1,6 @@
 string1 = 'this string uses single quotes and can contain "double quotes" and escaped \'single quotes\''
 string2 = "this string uses single quotes and can contain 'single quotes' and escaped \"double quotes\""
-string3 = [[this string uses double brackets and can contain both "double quotes" and 'single quotes' unescaped, as well as [single brackets] and, [[double open brackets. It cannot contain double closed brackets, but it can contain unescaped
+string3 = [[this string uses double brackets and can contain both "double quotes" and 'single quotes' unescaped, as well as [single brackets]. It cannot contain double closed brackets, but it can contain unescaped
 newlines]]
 string4 = [====[this string uses super long brackets and can contain "double quotes", 'single quotes', and a variety of closing brackets:
 - ]

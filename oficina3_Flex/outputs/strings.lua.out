@@ -12,8 +12,8 @@ line 3 - token: 48 - content: string3
 line 3 - token: 36 - content: =
 line 4 - token: 49 - content: ]]
     string content: [[this string uses double brackets and can contain both "double quotes" and 'sin
-    gle quotes' unescaped, as well as [single brackets] and, [[double open brackets. It cannot conta
-    in double closed brackets, but it can contain unescaped
+    gle quotes' unescaped, as well as [single brackets]. It cannot contain double closed brackets, b
+    ut it can contain unescaped
 newlines]]
 line 5 - token: 48 - content: string4
 line 5 - token: 36 - content: =

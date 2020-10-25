@@ -61,8 +61,8 @@ SINGLE_QUOTE    \'
 DOUBLE_QUOTE    \"
 OPEN_LONG       \[[=]*\[
 CLOSE_LONG      \][=]*\]
-NUMBER          ([0-9]+\.[0-9]+|[0-9]+\.?|\.[0-9]+)([eE][-+]?[0-9]+)?
-NUMBER_HEXA     0[xX][a-fA-F0-9]+
+NUMBER          -?([0-9]+\.[0-9]+|[0-9]+\.?|\.[0-9]+)([eE][-+]?[0-9]+)?
+NUMBER_HEXA     -?0[xX][a-fA-F0-9]+
 DOUBLE_HYPHEN   --
 WHITESPACE      [ \t\v]+
 EOL             [ \n\r]+
@@ -151,7 +151,7 @@ while    return WHILE;
     accumulate_string(yytext);
 }
 <string_context>{ESCAPE_NEWLINE} {
-    line_number++;              //pq??? @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // line_number++;              //pq??? @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ //FIX -->> comentar essa linha
     accumulate_string("\\n");
 }
 <string_context>{ESCAPE_ASCII} {    
@@ -202,7 +202,7 @@ while    return WHILE;
 }
 <string_context>\n {
     if (string_start >= 0) {
-        accumulate_string("\n");
+        accumulate_string("\n");        // FIX ->> ('\\n')
         line_number++;
     }
     else {
