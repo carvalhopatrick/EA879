@@ -201,13 +201,14 @@ while    return WHILE;
     }
 }
 <string_context>\n {
-    line_number++;
     if (string_start >= 0) {
         accumulate_string("\n");
+        line_number++;
     }
     else {
         lex_error("unterminated string");
     }
+    
 }
 <string_context>\\. {
     lex_error("invalid escape sequence: %s", yytext);

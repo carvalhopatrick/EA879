@@ -388,7 +388,7 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static yyconst flex_int16_t yy_accept[158] =
+static yyconst flex_int16_t yy_accept[159] =
     {   0,
         0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
        72,   70,   69,   68,   52,   34,   26,   51,   37,   38,
@@ -396,17 +396,17 @@ static yyconst flex_int16_t yy_accept[158] =
        32,   36,   33,   48,   41,   42,   27,   48,   48,   48,
        48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
        39,   40,   70,   62,   60,   58,   57,   62,   62,   67,
-       66,   67,   67,   71,   69,   63,   35,    0,   49,    0,
-        0,   30,   28,   31,   48,    0,   53,   48,   48,    3,
-       48,   48,   48,   48,   48,   10,   11,   48,   48,   48,
-       15,   48,   48,   48,   48,   48,   29,   61,   54,   56,
+       66,   67,   67,   71,   69,   63,   35,   49,   49,   49,
+        0,    0,   30,   28,   31,   48,    0,   53,   48,   48,
+        3,   48,   48,   48,   48,   48,   10,   11,   48,   48,
+       48,   15,   48,   48,   48,   48,   48,   29,   61,   54,
 
-       55,    0,   59,    0,   64,    0,   65,   47,   49,    0,
-       49,   50,    1,   48,   48,    6,   48,    8,   48,   48,
-       13,   14,   48,   48,   48,   48,   48,   48,   56,   48,
-        4,   48,   48,   48,   48,   48,   18,   19,   48,   48,
-       56,    2,   48,    7,   48,   12,   48,   48,   20,   21,
-        5,   48,   16,   17,   48,    9,    0
+       56,   55,    0,   59,    0,   64,    0,   65,   47,   49,
+        0,   49,   50,    1,   48,   48,    6,   48,    8,   48,
+       48,   13,   14,   48,   48,   48,   48,   48,   48,   56,
+       48,    4,   48,   48,   48,   48,   48,   18,   19,   48,
+       48,   56,    2,   48,    7,   48,   12,   48,   48,   20,
+       21,    5,   48,   16,   17,   48,    9,    0
     } ;
 
 static yyconst YY_CHAR yy_ec[256] =
@@ -451,116 +451,118 @@ static yyconst YY_CHAR yy_meta[53] =
         1,    1
     } ;
 
-static yyconst flex_uint16_t yy_base[164] =
+static yyconst flex_uint16_t yy_base[165] =
     {   0,
         0,    0,   50,   52,   55,   58,    0,    0,    0,    0,
-      221,  222,  218,  222,  222,  222,  222,  222,  222,  222,
-      222,  222,  222,  206,  204,  222,   48,   53,  222,  222,
-      196,  195,  194,    0,   39,  222,  222,  173,  169,  170,
-       35,   55,   27,  169,   51,  166,  174,   54,  167,  170,
-      222,  222,  185,  222,  222,  222,  222,   99,   71,  222,
-      222,   69,   78,  222,  203,  222,  190,   78,   94,  106,
-        0,  222,  222,  222,    0,   93,  222,  169,  167,    0,
-      156,  166,  159,  154,  156,    0,    0,  163,  155,  148,
-        0,   58,  158,  145,  145,  152,  222,  222,  222,   96,
+      229,  230,  226,  230,  230,  230,  230,  230,  230,  230,
+      230,  230,  230,  214,   46,  230,   51,   74,  230,  230,
+      205,  204,  203,    0,   43,  230,  230,  182,  178,  179,
+       31,   52,   33,  178,   51,  175,  183,   29,  176,  179,
+      230,  230,  194,  230,  230,  230,  230,  106,   71,  230,
+      230,   74,   75,  230,  212,  230,  199,   90,   95,  104,
+      132,    0,  230,  230,  230,    0,   76,  230,  178,  176,
+        0,  165,  175,  168,  163,  165,    0,    0,  172,  164,
+      157,    0,   59,  167,  154,  154,  161,  230,  230,  230,
 
-      222,  103,  222,  112,  222,  113,  222,  222,  120,  132,
-      134,    0,    0,  158,  153,    0,  142,    0,  153,  154,
-        0,    0,  149,  136,  141,  146,  142,  139,  136,  139,
-      139,  141,  129,  134,  140,  110,    0,    0,  106,  106,
-      222,    0,  102,    0,   87,    0,   75,   68,    0,    0,
-        0,   63,    0,    0,   32,    0,  222,  155,  159,  163,
-      165,  169,   68
+       99,  230,  103,  230,  119,  230,  115,  230,  230,  139,
+      110,  141,    0,    0,  167,  162,    0,  151,    0,  162,
+      163,    0,    0,  158,  143,  132,  137,  133,  130,  143,
+      130,  130,  132,  120,  125,  133,  118,    0,    0,  121,
+      118,  230,    0,  115,    0,  103,    0,   85,   88,    0,
+        0,    0,   75,    0,    0,   67,    0,  230,  174,  178,
+      182,  184,  188,   73
     } ;
 
-static yyconst flex_int16_t yy_def[164] =
+static yyconst flex_int16_t yy_def[165] =
     {   0,
-      157,    1,  158,  158,  159,  159,  160,  160,  160,  160,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  161,  157,  157,  157,  161,  161,  161,
-      161,  161,  161,  161,  161,  161,  161,  161,  161,  161,
-      157,  157,  157,  157,  157,  157,  157,  162,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      163,  157,  157,  157,  161,  157,  157,  161,  161,  161,
-      161,  161,  161,  161,  161,  161,  161,  161,  161,  161,
-      161,  161,  161,  161,  161,  161,  157,  157,  157,  157,
+      158,    1,  159,  159,  160,  160,  161,  161,  161,  161,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  162,  158,  158,  158,  162,  162,  162,
+      162,  162,  162,  162,  162,  162,  162,  162,  162,  162,
+      158,  158,  158,  158,  158,  158,  158,  163,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  164,  158,  158,  158,  162,  158,  158,  162,  162,
+      162,  162,  162,  162,  162,  162,  162,  162,  162,  162,
+      162,  162,  162,  162,  162,  162,  162,  158,  158,  158,
 
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  163,  161,  161,  161,  161,  161,  161,  161,  161,
-      161,  161,  161,  161,  161,  161,  161,  161,  157,  161,
-      161,  161,  161,  161,  161,  161,  161,  161,  161,  161,
-      157,  161,  161,  161,  161,  161,  161,  161,  161,  161,
-      161,  161,  161,  161,  161,  161,    0,  157,  157,  157,
-      157,  157,  157
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  164,  162,  162,  162,  162,  162,  162,  162,
+      162,  162,  162,  162,  162,  162,  162,  162,  162,  158,
+      162,  162,  162,  162,  162,  162,  162,  162,  162,  162,
+      162,  158,  162,  162,  162,  162,  162,  162,  162,  162,
+      162,  162,  162,  162,  162,  162,  162,    0,  158,  158,
+      158,  158,  158,  158
     } ;
 
-static yyconst flex_uint16_t yy_nxt[275] =
+static yyconst flex_uint16_t yy_nxt[283] =
     {   0,
        12,   13,   14,   15,   16,   17,   18,   19,   20,   21,
        22,   23,   24,   25,   26,   27,   28,   29,   30,   31,
        32,   33,   34,   34,   34,   34,   35,   12,   36,   37,
        38,   39,   34,   40,   41,   42,   34,   43,   34,   44,
        45,   46,   34,   47,   34,   48,   49,   34,   50,   51,
-       52,   53,   55,   56,   55,   56,   57,   61,   57,   76,
-       61,   68,   86,   69,   69,   77,   68,   87,   69,   69,
-      112,   70,  156,   71,   81,   82,   70,   58,   59,   58,
-       59,   62,   70,   63,   62,   83,   63,   70,   89,  104,
-       93,  102,   90,  109,  109,  105,   84,   94,  106,  103,
+       52,   53,   55,   56,   55,   56,   57,   61,   57,   67,
+       61,   68,   68,   77,   69,   94,   70,   70,   87,   78,
+       82,   83,   95,   88,   71,  113,   72,   58,   59,   58,
+       59,   62,   84,   63,   62,   71,   63,   69,   90,   70,
+       70,  103,   91,   85,  105,  107,   77,   71,   86,  104,
 
-      123,   85,   99,  124,  155,   99,  107,   68,  154,   69,
-       69,  129,  129,   76,  100,  100,  110,   70,  110,   77,
-      153,  111,  111,  102,  152,   99,   99,   99,   70,   99,
-       99,  103,  104,  106,   99,  109,  109,  151,  105,  101,
-      150,  107,   99,   70,   99,  149,   99,  111,  111,  111,
-      111,  141,  141,  148,   70,   54,   54,   54,   54,   60,
-       60,   60,   60,   64,   64,   64,   64,   75,   75,   98,
-      147,   98,   98,  146,  145,  144,  143,  142,  140,  139,
-      138,  137,  136,  135,  134,  133,  132,  131,  130,  128,
-      127,  126,  125,  122,  121,  120,  119,  118,  117,  116,
+      106,  124,   78,  108,  125,   68,   68,  157,   71,  100,
+      110,  110,  100,   71,  130,  130,  156,   69,   71,   70,
+       70,  101,  101,  103,   71,  112,  112,   71,  155,   71,
+      154,  104,  100,  100,  100,  107,  100,  100,   71,  105,
+      153,  100,  111,  108,  111,  106,  102,  112,  112,  100,
+      152,  100,  151,  100,  110,  110,  112,  112,  142,  142,
+      150,  149,   71,  148,  147,  146,  145,  144,  143,  141,
+      140,  139,  138,   71,   54,   54,   54,   54,   60,   60,
+       60,   60,   64,   64,   64,   64,   76,   76,   99,  137,
+       99,   99,  136,  135,  134,  133,  132,  131,  129,  128,
 
-      115,  114,  113,  108,   65,   97,   96,   95,   92,   91,
-       88,   80,   79,   78,   74,   73,   72,   67,   66,   65,
-      157,   11,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157
+      127,  126,  123,  122,  121,  120,  119,  118,  117,  116,
+      115,  114,  109,   65,   98,   97,   96,   93,   92,   89,
+       81,   80,   79,   75,   74,   73,   66,   65,  158,   11,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158
     } ;
 
-static yyconst flex_int16_t yy_chk[275] =
+static yyconst flex_int16_t yy_chk[283] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    3,    3,    4,    4,    3,    5,    4,   35,
-        6,   27,   43,   27,   27,   35,   28,   43,   28,   28,
-      163,   27,  155,   27,   41,   41,   28,    3,    3,    4,
-        4,    5,   27,    5,    6,   42,    6,   28,   45,   62,
-       48,   59,   45,   68,   68,   62,   42,   48,   63,   59,
+        1,    1,    3,    3,    4,    4,    3,    5,    4,   25,
+        6,   25,   25,   35,   27,   48,   27,   27,   43,   35,
+       41,   41,   48,   43,   27,  164,   27,    3,    3,    4,
+        4,    5,   42,    5,    6,   27,    6,   28,   45,   28,
+       28,   59,   45,   42,   62,   63,   77,   28,   42,   59,
 
-       92,   42,   58,   92,  152,   58,   63,   69,  148,   69,
-       69,  100,  100,   76,   58,   58,   70,   69,   70,   76,
-      147,   70,   70,  102,  145,   58,   58,   58,   69,   58,
-       58,  102,  104,  106,   58,  109,  109,  143,  104,   58,
-      140,  106,   58,  109,   58,  139,   58,  110,  110,  111,
-      111,  129,  129,  136,  109,  158,  158,  158,  158,  159,
-      159,  159,  159,  160,  160,  160,  160,  161,  161,  162,
-      135,  162,  162,  134,  133,  132,  131,  130,  128,  127,
-      126,  125,  124,  123,  120,  119,  117,  115,  114,   96,
-       95,   94,   93,   90,   89,   88,   85,   84,   83,   82,
+       62,   93,   77,   63,   93,   68,   68,  156,   28,   58,
+       69,   69,   58,   68,  101,  101,  153,   70,   69,   70,
+       70,   58,   58,  103,   68,  111,  111,   70,  149,   69,
+      148,  103,   58,   58,   58,  107,   58,   58,   70,  105,
+      146,   58,   71,  107,   71,  105,   58,   71,   71,   58,
+      144,   58,  141,   58,  110,  110,  112,  112,  130,  130,
+      140,  137,  110,  136,  135,  134,  133,  132,  131,  129,
+      128,  127,  126,  110,  159,  159,  159,  159,  160,  160,
+      160,  160,  161,  161,  161,  161,  162,  162,  163,  125,
+      163,  163,  124,  121,  120,  118,  116,  115,   97,   96,
 
-       81,   79,   78,   67,   65,   53,   50,   49,   47,   46,
-       44,   40,   39,   38,   33,   32,   31,   25,   24,   13,
-       11,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157,  157,  157,  157,  157,  157,  157,
-      157,  157,  157,  157
+       95,   94,   91,   90,   89,   86,   85,   84,   83,   82,
+       80,   79,   67,   65,   53,   50,   49,   47,   46,   44,
+       40,   39,   38,   33,   32,   31,   24,   13,   11,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
+      158,  158
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -577,10 +579,10 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "lua-lexer-inicial.l"
+#line 1 "lua-lexer.l"
 /* lua.l: a simplified lexer for the language lua */
 /* --------- Opening code for generated lexer */
-#line 6 "lua-lexer-inicial.l"
+#line 6 "lua-lexer.l"
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -627,7 +629,7 @@ void lex_error(const char *message, ...);
 /* --------- Lexer declarations */
 /* " */
 
-#line 631 "lua-lexer.c"
+#line 633 "lua-lexer.c"
 
 #define INITIAL 0
 #define string_context 1
@@ -849,12 +851,12 @@ YY_DECL
 		}
 
 	{
-#line 73 "lua-lexer-inicial.l"
+#line 73 "lua-lexer.l"
 
 
  /* --- Tokens with fixed contents should simply return the correct TokenType */
 
-#line 858 "lua-lexer.c"
+#line 860 "lua-lexer.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -881,13 +883,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 158 )
+				if ( yy_current_state >= 159 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 222 );
+		while ( yy_base[yy_current_state] != 230 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -913,259 +915,259 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 77 "lua-lexer-inicial.l"
+#line 77 "lua-lexer.l"
 return AND;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 78 "lua-lexer-inicial.l"
+#line 78 "lua-lexer.l"
 return BREAK;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 79 "lua-lexer-inicial.l"
+#line 79 "lua-lexer.l"
 return DO;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 80 "lua-lexer-inicial.l"
+#line 80 "lua-lexer.l"
 return ELSE;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 81 "lua-lexer-inicial.l"
+#line 81 "lua-lexer.l"
 return ELSEIF;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 82 "lua-lexer-inicial.l"
+#line 82 "lua-lexer.l"
 return END;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 83 "lua-lexer-inicial.l"
+#line 83 "lua-lexer.l"
 return FALSE;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 84 "lua-lexer-inicial.l"
+#line 84 "lua-lexer.l"
 return FOR;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 85 "lua-lexer-inicial.l"
+#line 85 "lua-lexer.l"
 return FUNCTION;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 86 "lua-lexer-inicial.l"
+#line 86 "lua-lexer.l"
 return IF;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 87 "lua-lexer-inicial.l"
+#line 87 "lua-lexer.l"
 return IN;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 88 "lua-lexer-inicial.l"
+#line 88 "lua-lexer.l"
 return LOCAL;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 89 "lua-lexer-inicial.l"
+#line 89 "lua-lexer.l"
 return NIL;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 90 "lua-lexer-inicial.l"
+#line 90 "lua-lexer.l"
 return NOT;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 91 "lua-lexer-inicial.l"
+#line 91 "lua-lexer.l"
 return OR;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 92 "lua-lexer-inicial.l"
+#line 92 "lua-lexer.l"
 return REPEAT;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 93 "lua-lexer-inicial.l"
+#line 93 "lua-lexer.l"
 return RETURN;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 94 "lua-lexer-inicial.l"
+#line 94 "lua-lexer.l"
 return THEN;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 95 "lua-lexer-inicial.l"
+#line 95 "lua-lexer.l"
 return TRUE;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 96 "lua-lexer-inicial.l"
+#line 96 "lua-lexer.l"
 return UNTIL;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 97 "lua-lexer-inicial.l"
+#line 97 "lua-lexer.l"
 return WHILE;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 99 "lua-lexer-inicial.l"
+#line 99 "lua-lexer.l"
 return PLUS;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 100 "lua-lexer-inicial.l"
+#line 100 "lua-lexer.l"
 return MINUS;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 101 "lua-lexer-inicial.l"
+#line 101 "lua-lexer.l"
 return MULT;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 102 "lua-lexer-inicial.l"
+#line 102 "lua-lexer.l"
 return DIV;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 103 "lua-lexer-inicial.l"
+#line 103 "lua-lexer.l"
 return MOD;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 104 "lua-lexer-inicial.l"
+#line 104 "lua-lexer.l"
 return EXP;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 105 "lua-lexer-inicial.l"
+#line 105 "lua-lexer.l"
 return EQUAL;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 106 "lua-lexer-inicial.l"
+#line 106 "lua-lexer.l"
 return DIFF;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 107 "lua-lexer-inicial.l"
+#line 107 "lua-lexer.l"
 return LE;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 108 "lua-lexer-inicial.l"
+#line 108 "lua-lexer.l"
 return GE;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 109 "lua-lexer-inicial.l"
+#line 109 "lua-lexer.l"
 return LT;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 110 "lua-lexer-inicial.l"
+#line 110 "lua-lexer.l"
 return GT;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 111 "lua-lexer-inicial.l"
+#line 111 "lua-lexer.l"
 return LEN;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 112 "lua-lexer-inicial.l"
+#line 112 "lua-lexer.l"
 return CONCAT;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 113 "lua-lexer-inicial.l"
+#line 113 "lua-lexer.l"
 return SET;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 115 "lua-lexer-inicial.l"
+#line 115 "lua-lexer.l"
 return OPEN_PAR;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 116 "lua-lexer-inicial.l"
+#line 116 "lua-lexer.l"
 return CLOSE_PAR;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 117 "lua-lexer-inicial.l"
+#line 117 "lua-lexer.l"
 return OPEN_CURLY;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 118 "lua-lexer-inicial.l"
+#line 118 "lua-lexer.l"
 return CLOSE_CURLY;
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 119 "lua-lexer-inicial.l"
+#line 119 "lua-lexer.l"
 return OPEN_BRA;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 120 "lua-lexer-inicial.l"
+#line 120 "lua-lexer.l"
 return CLOSE_BRA;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 122 "lua-lexer-inicial.l"
+#line 122 "lua-lexer.l"
 return SEMICOLON;
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 123 "lua-lexer-inicial.l"
+#line 123 "lua-lexer.l"
 return COLON;
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 124 "lua-lexer-inicial.l"
+#line 124 "lua-lexer.l"
 return COMMA;
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 125 "lua-lexer-inicial.l"
+#line 125 "lua-lexer.l"
 return DOT;
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 126 "lua-lexer-inicial.l"
+#line 126 "lua-lexer.l"
 return ELLIPSIS;
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 128 "lua-lexer-inicial.l"
+#line 128 "lua-lexer.l"
 return IDENTIFIER;
 	YY_BREAK
 /* --- Numbers */
 case 49:
 YY_RULE_SETUP
-#line 132 "lua-lexer-inicial.l"
+#line 132 "lua-lexer.l"
 return NUMBER;
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 133 "lua-lexer-inicial.l"
+#line 133 "lua-lexer.l"
 return NUMBER;
 	YY_BREAK
 /* --- Strings */
 case 51:
 YY_RULE_SETUP
-#line 137 "lua-lexer-inicial.l"
+#line 137 "lua-lexer.l"
 {
     start_string(String_start_single);
     BEGIN(string_context);
@@ -1173,7 +1175,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 141 "lua-lexer-inicial.l"
+#line 141 "lua-lexer.l"
 {
     start_string(String_start_double);
     BEGIN(string_context);
@@ -1181,7 +1183,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 145 "lua-lexer-inicial.l"
+#line 145 "lua-lexer.l"
 {
     start_string(strlen(yytext));
     BEGIN(string_context);
@@ -1189,14 +1191,14 @@ YY_RULE_SETUP
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 150 "lua-lexer-inicial.l"
+#line 150 "lua-lexer.l"
 {
     accumulate_string(yytext);
 }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 153 "lua-lexer-inicial.l"
+#line 153 "lua-lexer.l"
 {
     line_number++;              //pq??? @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     accumulate_string("\\n");
@@ -1204,7 +1206,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 157 "lua-lexer-inicial.l"
+#line 157 "lua-lexer.l"
 {    
     // Lua permite escapes do tipo "\48" no meio da string, que deve substituir pelo caracter equivalente a 48 em ascii (no caso, 0)
     char* strAscii;
@@ -1224,7 +1226,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 173 "lua-lexer-inicial.l"
+#line 173 "lua-lexer.l"
 {
     if (string_start == String_start_single) {
         BEGIN(INITIAL);
@@ -1238,7 +1240,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 183 "lua-lexer-inicial.l"
+#line 183 "lua-lexer.l"
 {
     if (string_start == String_start_double) {
         BEGIN(INITIAL);
@@ -1252,7 +1254,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 193 "lua-lexer-inicial.l"
+#line 193 "lua-lexer.l"
 {
     if (string_start == strlen(yytext)) {
         BEGIN(INITIAL);
@@ -1267,33 +1269,34 @@ YY_RULE_SETUP
 case 60:
 /* rule 60 can match eol */
 YY_RULE_SETUP
-#line 203 "lua-lexer-inicial.l"
+#line 203 "lua-lexer.l"
 {
-    line_number++;
     if (string_start >= 0) {
         accumulate_string("\n");
+        line_number++;
     }
     else {
         lex_error("unterminated string");
     }
+    
 }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 212 "lua-lexer-inicial.l"
+#line 213 "lua-lexer.l"
 {
     lex_error("invalid escape sequence: %s", yytext);
 }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 215 "lua-lexer-inicial.l"
+#line 216 "lua-lexer.l"
 {
     accumulate_string(yytext);
 }
 	YY_BREAK
 case YY_STATE_EOF(string_context):
-#line 218 "lua-lexer-inicial.l"
+#line 219 "lua-lexer.l"
 {
     lex_error("unterminated string");
 }
@@ -1301,7 +1304,7 @@ case YY_STATE_EOF(string_context):
 /* --- Comments */
 case 63:
 YY_RULE_SETUP
-#line 224 "lua-lexer-inicial.l"
+#line 225 "lua-lexer.l"
 {
     BEGIN(comment_context);
     start_of_comment = true;
@@ -1310,7 +1313,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 229 "lua-lexer-inicial.l"
+#line 230 "lua-lexer.l"
 {
     if (start_of_comment) {
         comment_start = (strlen(yytext) - 1);
@@ -1320,7 +1323,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 235 "lua-lexer-inicial.l"
+#line 236 "lua-lexer.l"
 {
     start_of_comment = false;
     if ((strlen(yytext) - 1) == comment_start) {
@@ -1332,8 +1335,8 @@ YY_RULE_SETUP
 case 66:
 /* rule 66 can match eol */
 YY_RULE_SETUP
-#line 242 "lua-lexer-inicial.l"
-{
+#line 243 "lua-lexer.l"
+{ 
     start_of_comment = false;
     if (comment_start <= 0){
         // end comment??
@@ -1346,13 +1349,13 @@ YY_RULE_SETUP
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 252 "lua-lexer-inicial.l"
+#line 253 "lua-lexer.l"
 {
     start_of_comment = false;
 }
 	YY_BREAK
 case YY_STATE_EOF(comment_context):
-#line 255 "lua-lexer-inicial.l"
+#line 256 "lua-lexer.l"
 {
     if (comment_start > 0){
         lex_error("unterminated long comment");
@@ -1365,28 +1368,28 @@ case YY_STATE_EOF(comment_context):
 case 68:
 /* rule 68 can match eol */
 YY_RULE_SETUP
-#line 265 "lua-lexer-inicial.l"
+#line 266 "lua-lexer.l"
 line_number++;
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 267 "lua-lexer-inicial.l"
+#line 268 "lua-lexer.l"
 /* não faz nada */ 
 	YY_BREAK
 /* --- Everything else */
 case 70:
 YY_RULE_SETUP
-#line 271 "lua-lexer-inicial.l"
+#line 272 "lua-lexer.l"
 {
     lex_error("unrecognized symbol: %s", yytext);
 }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 275 "lua-lexer-inicial.l"
+#line 276 "lua-lexer.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1390 "lua-lexer.c"
+#line 1393 "lua-lexer.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(long_comment_context):
 case YY_STATE_EOF(short_comment_context):
@@ -1681,7 +1684,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 158 )
+			if ( yy_current_state >= 159 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1709,11 +1712,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 158 )
+		if ( yy_current_state >= 159 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 157);
+	yy_is_jam = (yy_current_state == 158);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2389,7 +2392,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 275 "lua-lexer-inicial.l"
+#line 276 "lua-lexer.l"
 
 
 
