@@ -54,10 +54,9 @@ void lex_error(const char *message, ...);
 %option outfile="lua-lexer.c"
 
 IDENTIFIER      [_a-zA-Z][_a-zA-Z0-9]*
-ESCAPE          \\[abftvr\\"']
+ESCAPE          \\[abftvr\\"'\[\]]
 ESCAPE_NEWLINE  \\n
 ESCAPE_ASCII    \\([0-9]{1,3})
-ESCAPE_BRACKET  \\[\[\]]
 SINGLE_QUOTE    \'
 DOUBLE_QUOTE    \"
 OPEN_LONG       \[[=]*\[
@@ -149,7 +148,6 @@ while    return WHILE;
 }
 
 <string_context>{ESCAPE} {
-    accumulate_string("\\");
     accumulate_string(yytext);
 }
 <string_context>{ESCAPE_NEWLINE} {
@@ -171,13 +169,6 @@ while    return WHILE;
     accumulate_string("\\");
     accumulate_string(c);
     free(strAscii);
-}
-<string_context>{ESCAPE_BRACKET} {
-    // Lua permite escapar brackets ( "\[""  e  "\]"" ) dentro da string, mas C não permite
-    char c[2];
-    c[0] = yytext[1];
-    c[1] = '\0';
-    accumulate_string(c);
 }
 <string_context>{SINGLE_QUOTE} {
     if (string_start == String_start_single) {
@@ -212,7 +203,7 @@ while    return WHILE;
 <string_context>\n {
     line_number++;
     if (string_start >= 0) {
-        accumulate_string("\\n");
+        accumulate_string("\n");
     }
     else {
         lex_error("unterminated string");
@@ -236,37 +227,34 @@ while    return WHILE;
     comment_start = Comment_start_short;
 }
 <comment_context>{OPEN_LONG} {
-    start_of_comment = false;
     if (start_of_comment) {
         comment_start = (strlen(yytext) - 1);
     }
+    start_of_comment = false;
 }
 <comment_context>{CLOSE_LONG} {
     start_of_comment = false;
     if ((strlen(yytext) - 1) == comment_start) {
         // end comment??
-        return 999;
-    } 
+        BEGIN(INITIAL);
+    }
 }
 <comment_context>\n {
     start_of_comment = false;
     if (comment_start <= 0){
         // end comment??
-        return 999;
+        BEGIN(INITIAL);
     } else {
         line_number++;
-        yymore();
     }
 }
 <comment_context>. {
     start_of_comment = false;
-    yymore();
 }
 <comment_context><<EOF>> {
     if (comment_start > 0){
         lex_error("unterminated long comment");
     } else {
-        // end comment??
         return END_OF_INPUT;
     }
 }
