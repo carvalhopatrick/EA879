@@ -1,0 +1,48 @@
+line 1 - token: 48 - content: string1
+line 1 - token: 36 - content: =
+line 1 - token: 49 - content: '
+    string content: 'this string uses single quotes and can contain "double quotes" and escaped \'si
+    ngle quotes\''
+line 2 - token: 48 - content: string2
+line 2 - token: 36 - content: =
+line 2 - token: 49 - content: "
+    string content: "this string uses single quotes and can contain 'single quotes' and escaped \"do
+    uble quotes\""
+line 3 - token: 48 - content: string3
+line 3 - token: 36 - content: =
+line 4 - token: 49 - content: ]]
+    string content: [[this string uses double brackets and can contain both "double quotes" and 'sin
+    gle quotes' unescaped, as well as [single brackets] and, [[double open brackets. It cannot conta
+    in double closed brackets, but it can contain unescaped
+newlines]]
+line 5 - token: 48 - content: string4
+line 5 - token: 36 - content: =
+line 11 - token: 49 - content: ]====]
+    string content: [====[this string uses super long brackets and can contain "double quotes", 'sin
+    gle quotes', and a variety of closing brackets:
+- ]
+- ]]
+- ]=]
+- ]==]
+- ]===]
+It can also contai
+    n an open bracket as long as the starting one: [====[, but not a closing bracket as long as the 
+    starting one.]====]
+line 20 - token: 48 - content: print
+line 20 - token: 37 - content: (
+line 20 - token: 48 - content: string1
+line 20 - token: 38 - content: )
+line 21 - token: 48 - content: print
+line 21 - token: 37 - content: (
+line 21 - token: 48 - content: string2
+line 21 - token: 38 - content: )
+line 22 - token: 48 - content: print
+line 22 - token: 37 - content: (
+line 22 - token: 48 - content: string3
+line 22 - token: 38 - content: )
+line 22 - token: 43 - content: ;
+line 22 - token: 48 - content: print
+line 22 - token: 37 - content: (
+line 22 - token: 48 - content: string4
+line 22 - token: 38 - content: )
+line 23 - token: 0 - content: 

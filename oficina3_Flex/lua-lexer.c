@@ -1224,7 +1224,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 174 "lua-lexer-inicial.l"
+#line 173 "lua-lexer-inicial.l"
 {
     if (string_start == String_start_single) {
         BEGIN(INITIAL);
@@ -1238,7 +1238,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 184 "lua-lexer-inicial.l"
+#line 183 "lua-lexer-inicial.l"
 {
     if (string_start == String_start_double) {
         BEGIN(INITIAL);
@@ -1252,7 +1252,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 194 "lua-lexer-inicial.l"
+#line 193 "lua-lexer-inicial.l"
 {
     if (string_start == strlen(yytext)) {
         BEGIN(INITIAL);
@@ -1267,7 +1267,7 @@ YY_RULE_SETUP
 case 60:
 /* rule 60 can match eol */
 YY_RULE_SETUP
-#line 204 "lua-lexer-inicial.l"
+#line 203 "lua-lexer-inicial.l"
 {
     line_number++;
     if (string_start >= 0) {
@@ -1280,20 +1280,20 @@ YY_RULE_SETUP
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 213 "lua-lexer-inicial.l"
+#line 212 "lua-lexer-inicial.l"
 {
     lex_error("invalid escape sequence: %s", yytext);
 }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 216 "lua-lexer-inicial.l"
+#line 215 "lua-lexer-inicial.l"
 {
     accumulate_string(yytext);
 }
 	YY_BREAK
 case YY_STATE_EOF(string_context):
-#line 219 "lua-lexer-inicial.l"
+#line 218 "lua-lexer-inicial.l"
 {
     lex_error("unterminated string");
 }
@@ -1301,7 +1301,7 @@ case YY_STATE_EOF(string_context):
 /* --- Comments */
 case 63:
 YY_RULE_SETUP
-#line 225 "lua-lexer-inicial.l"
+#line 224 "lua-lexer-inicial.l"
 {
     BEGIN(comment_context);
     start_of_comment = true;
@@ -1310,7 +1310,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 230 "lua-lexer-inicial.l"
+#line 229 "lua-lexer-inicial.l"
 {
     if (start_of_comment) {
         comment_start = (strlen(yytext) - 1);
@@ -1320,7 +1320,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 236 "lua-lexer-inicial.l"
+#line 235 "lua-lexer-inicial.l"
 {
     start_of_comment = false;
     if ((strlen(yytext) - 1) == comment_start) {
@@ -1332,11 +1332,12 @@ YY_RULE_SETUP
 case 66:
 /* rule 66 can match eol */
 YY_RULE_SETUP
-#line 243 "lua-lexer-inicial.l"
+#line 242 "lua-lexer-inicial.l"
 {
     start_of_comment = false;
     if (comment_start <= 0){
         // end comment??
+        line_number++;
         BEGIN(INITIAL);
     } else {
         line_number++;
@@ -1385,7 +1386,7 @@ YY_RULE_SETUP
 #line 275 "lua-lexer-inicial.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1389 "lua-lexer.c"
+#line 1390 "lua-lexer.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(long_comment_context):
 case YY_STATE_EOF(short_comment_context):

@@ -1,0 +1,6 @@
+line 1 - token: 48 - content: print
+line 1 - token: 37 - content: (
+line 1 - token: 49 - content: "
+    string content: "Hello, EA879!"
+line 1 - token: 38 - content: )
+line 2 - token: 0 - content: 

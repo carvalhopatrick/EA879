@@ -61,7 +61,7 @@ SINGLE_QUOTE    \'
 DOUBLE_QUOTE    \"
 OPEN_LONG       \[[=]*\[
 CLOSE_LONG      \][=]*\]
-NUMBER          ([0-9]+\.[0-9]+|[0-9]+)([eE][-+]?[0-9]+)?
+NUMBER          ([0-9]+\.[0-9]+|[0-9]+\.?|\.[0-9]+)([eE][-+]?[0-9]+)?
 NUMBER_HEXA     0[xX][a-fA-F0-9]+
 DOUBLE_HYPHEN   --
 WHITESPACE      [ \t\v]+
@@ -239,10 +239,11 @@ while    return WHILE;
         BEGIN(INITIAL);
     }
 }
-<comment_context>\n {
+<comment_context>\n { 
     start_of_comment = false;
     if (comment_start <= 0){
         // end comment??
+        line_number++;
         BEGIN(INITIAL);
     } else {
         line_number++;
