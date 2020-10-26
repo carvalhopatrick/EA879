@@ -54,8 +54,8 @@ void lex_error(const char *message, ...);
 %option outfile="lua-lexer.c"
 
 IDENTIFIER      [_a-zA-Z][_a-zA-Z0-9]*
-ESCAPE          \\[abftvr\\"'\[\]]
-ESCAPE_NEWLINE  \\n
+ESCAPE          \\[abftvrn\\"'\[\]]
+ESCAPE_NEWLINE  \\\n
 ESCAPE_ASCII    \\([0-9]{1,3})
 SINGLE_QUOTE    \'
 DOUBLE_QUOTE    \"
@@ -151,7 +151,7 @@ while    return WHILE;
     accumulate_string(yytext);
 }
 <string_context>{ESCAPE_NEWLINE} {
-    // line_number++;              //pq??? @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ //FIX -->> comentar essa linha
+    line_number++;              //pq??? @@@@@@@@@@@@@@@@@@@@@@@@@@ //FIX -->> comentar essa linha
     accumulate_string("\\n");
 }
 <string_context>{ESCAPE_ASCII} {    
@@ -202,7 +202,7 @@ while    return WHILE;
 }
 <string_context>\n {
     if (string_start >= 0) {
-        accumulate_string("\n");        // FIX ->> ('\\n')
+        accumulate_string("\\n");        // FIX ->> ('\\n')
         line_number++;
     }
     else {

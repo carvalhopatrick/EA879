@@ -13,21 +13,14 @@ line 3 - token: 36 - content: =
 line 4 - token: 49 - content: ]]
     string content: [[this string uses double brackets and can contain both "double quotes" and 'sin
     gle quotes' unescaped, as well as [single brackets]. It cannot contain double closed brackets, b
-    ut it can contain unescaped
-newlines]]
+    ut it can contain unescaped\nnewlines]]
 line 5 - token: 48 - content: string4
 line 5 - token: 36 - content: =
 line 11 - token: 49 - content: ]====]
     string content: [====[this string uses super long brackets and can contain "double quotes", 'sin
-    gle quotes', and a variety of closing brackets:
-- ]
-- ]]
-- ]=]
-- ]==]
-- ]===]
-It can also contai
-    n an open bracket as long as the starting one: [====[, but not a closing bracket as long as the 
-    starting one.]====]
+    gle quotes', and a variety of closing brackets:\n- ]\n- ]]\n- ]=]\n- ]==]\n- ]===]\nIt can also 
+    contain an open bracket as long as the starting one: [====[, but not a closing bracket as long a
+    s the starting one.]====]
 line 20 - token: 48 - content: print
 line 20 - token: 37 - content: (
 line 20 - token: 48 - content: string1
