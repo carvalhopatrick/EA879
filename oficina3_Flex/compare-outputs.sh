@@ -1,7 +1,8 @@
 #!/bin/bash
-for f in *.lua
+for f in lua-examples/*.lua
 do
-	echo "######### Comparando $f.out com $f ... #########"
-	./lua-lexer < $f | diff outputs/$f.out -
-	echo "######### Done ... ###########"
+	new="$(echo $f | perl -pe 's/(.+\/)(.+)\.lua/\2\.out/')"
+	echo "####### Comparando saida de $f com reference-outputs/$new" ... 
+	./lua-lexer < $f | diff reference-outputs/$new -
+	echo "####### Done ... ###########"
 done

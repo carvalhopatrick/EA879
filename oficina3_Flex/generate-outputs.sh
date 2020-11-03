@@ -1,6 +1,8 @@
 #!/bin/bash
-for f in *.lua
+for f in lua-examples/*.lua
 do	
 	echo "Criando arquivo out para $f ..."
-	./lua-lexer < $f > outputs/$f.out
+	new="$(echo $f | perl -pe 's/(.+\/)(.+)\.lua/\2\.out/')"
+	echo outputs/$new
+	./lua-lexer < $f > outputs/$new
 done
