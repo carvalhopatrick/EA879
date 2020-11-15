@@ -1,0 +1,84 @@
+Oficina 3 - Flex
+------------------------------
+Como usar este roteiro?
+
+Siga atentamente os itens do roteiro
+
+Siga os itens em ordem: alguns itens dependem dos itens anteriores
+
+As perguntas que estão *neste arquivo* são para reflexão e não devem ser respondidas no arquivo questionario.txt
+
+Os itens marcados com -> são os que tem perguntas para entregar no questionário (arquivo questionario.txt). Atenção: esses itens podem depender da execução dos itens anteriores!
+
+Os itens marcados com => são os que geram arquivos para submissão junto com a tarefa
+
+------------------------------
+
+Linguagens de programação "leves" tem uma espeficificação léxica e sintática simplificada em comparação com linguagens convencionais. Uma dessas linguagens é lua, criada por três professores da PUC-Rio no início da década de 1990, e que se tornou popular como linguagem para scripting de aplicações interativas, como jogos e TV.
+
+1. Leia as especificações sintáticas da linguagem lua em https://www.lua.org/manual/5.1/manual.html (seções 8 e 2.5.6) ou no arquivo lua-syntax.txt
+
+2. Familiarize-se um pouco com a semântica das construções da linguagem executando os exemplos fornecidos (os arquivos *.lua) no interpretador de referência (comando lua5.1) e passando os olhos pela seção 2 do manual da linguagem em https://www.lua.org/manual/5.1/manual.html --- se estiver com pressa você pode pular completamente as subseções 2.4.5, 2.4.6, 2.5.8, 2.5.9, 2.6, 2.7, 2.8, 2.9, 2.10 e 2.11, que dizem respeito a partes da linguagem que não implementaremos.
+
+2. Utilizando como base o código lua-parser-inicial.y, crie um arquivo lua-parser.y completando e modificando as seções indicadas (você pode fazer uma busca pela palavra "complete" para verificar se não esqueceu nada).
+
+- Estude o código com cuidado: as partes já prontas podem muito bem servir de inspiração para completar as partes que faltam.
+
+- Você não precisa entender em profundidade a implementação interna das funções semânticas se não desejar. Uma documentação sumária dessas funções "para usuários" está disponível no arquivo de cabeçalho lua-semantics.h
+
+- Você pode resolver o problema por partes (e.g., só as tabelas do lua), criando um arquivo auxiliar com um subconjunto pequeno das definições e ações. Pode ser mais fácil fazer dessa forma, por exemplo, para depurar a gramática.
+
+- Não modifique a lógica do parser para além das seções a serem completadas (não resolva o problema de uma forma completamente diferente). Não modifique os outros arquivos (fora o lua-parser.y). Desculpe-me tolher sua criatividade, mas é preciso tornar a correção pelos pares exequível.
+
+3. Prepare o parser com os comandos
+
+    bison lua-parser-final.y
+    flex lua-lexer.l
+    gcc -o lua-parser lua-lexer.c lua-parser.tab.c lua-semantics.c -Wall
+
+    (O warning "-s option given but default rule can be matched" no segundo comando é esperado)
+
+4. Teste o seu lexer. Você pode fazer um teste simples com
+
+    ./lua-parser hello.lua > hello.out
+    diff hello.out hello.ref
+
+    Se seu programa estiver perfeito, o diff deve retornar vazio. Você pode fazer um rigoroso teste do seu lexer, usando os seguintes comandos:
+
+    ./lua-parser numbers.lua > numbers.out
+    diff numbers.out numbers.ref
+
+    ./lua-parser strings.lua > strings.out
+    diff strings.out strings.ref
+
+    ./lua-parser operators.lua > operators.out
+    diff operators.out operators.ref
+
+    # Trocando ? por 1, 2, 3, 4, 5, 6, 7, 8
+    ./lua-parser sort.lua < sort.in? > sort.out?
+    diff sort.out? sort.ref?
+
+    # Trocando ? por 1, 2, 3, 4, 5, 6, 7, 8, 9
+    ./lua-parser find_ascii_code.lua < find_ascii_code.in? > find_ascii_code.out1
+    diff find_ascii_code.out? find_ascii_code.ref?
+
+    ./lua-parser markov.lua > markov.ref 2> markov.errref
+    diff markov.out markov.ref
+    diff markov.err markov.errref
+
+    ./lua-parser controls.lua > controls.ref 2> controls.errref
+    diff controls.out controls.ref
+    diff controls.err controls.errref
+
+    Com exceção dos programas markov.lua e controls.lua, a saída esperada dos programas acima é idêntica à do interpretador de referência! E.g., o diff abaixo deve retornar vazio:
+
+    lua5.1 operators.lua > operators.out
+    diff operators.out operators.ref
+
+    Durante o desenvolvimento, para depuração, pode ser útil testar seu parser de forma interativa, usando a entrada padrão. Use o comando...
+
+    ./lua-parser --
+
+    ...e você poderá digitar o input diretamente no teclado, observando os resultados aos poucos (digite ctrl-D para marcar o final da entrada).
+
+5 => Submeta o arquivo fonte do GNU Bison lua-parser.y. Atenção: cuidado para não submeter o fonte .c gerado pelo Bison! Submeta o fonte do Bison! Cuidado também para não submeter o fonte inicial sem as modificações. Não é permitido, nem necessário, enviar nenhum outro arquivo além do lua-parser.y.

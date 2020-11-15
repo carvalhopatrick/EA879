@@ -1,0 +1,64 @@
+Oficina 3 - GNU Bison
+------------------------------
+Utilize esta rubrica para verificar seu próprio trabalho. Para a correção pelos pares, utilize o arquivo rubrica-final.txt (será disponibilizado na fase de correção).
+------------------------------
+Rubrica:
+
+Se a nota do trabalho chegar a 0 em algum momento, você não deve continuar a correção. Por exemplo, se na etapa 2 você atribuir a nota 0, justifique citando esta etapa da rubrica e interrompa a correção.
+
+No campo de justificativa, mencione os itens da rubrica que levaram a eventuais descontos de pontos. No caso do item 6, mencione quais declarações exatamente estão erradas.
+
+1. Verifique se o arquivo lua-parser.y foi corretamente submetido. Atribua nota 0 ao trabalho nas seguintes situações: foi submetido o parser gerado em C mas não o fonte do GNU Bison; foi submetido o fonte inicial sem modificações; foi submetido um fonte que o Bison não compila (warnings são okay, mas erros não), foi submetido um fonte que gera um parser que o gcc não compila (warnings okay, erros não).
+
+2. Abra o arquivo lua-parser.y e compare-o visualmente com o arquivo de referencia lua-parser-inicial.y. Se houve modificações na lógica do programa fora das regiões a serem completadas, atribua nota 0 ao trabalho. (Mas não seja cri-cri e anule o exercício do colega só porque ele esbarrou em um espaço, colocou um comentário, ou adicionou uma linha em branco. Use o bom senso.)
+
+(Atenção: as etapas 3 a 5.c abaixo podem ser automatizadas usando o script de BASH perform_all_tests.sh, que executa todas as chamadas para o lua-parser, bem como todos os diffs.)
+
+3. Execute os comandos...
+
+    ./lua-parser < tests/hello.lua > hello.out
+    cat hello.out
+    diff hello.out tests/hello.out
+
+4. Se o programa falhar (o diff apresentar um resultado diferente) mesmo para este teste simples, atribua 0 ao trabalho e interrompa a correção.
+
+5.a. Execute as variantes do comando no item 3 trocando hello por numbers, strings, operators.
+
+5.b. Execute os comandos...
+
+    ./lua-parser < tests/markov.lua > markov.out 2> markov.err
+    cat markov.out
+    cat markov.err
+    diff markov.out tests/markov.ref
+    diff markov.err tests/markov.errref
+
+...e seu variante, trocando markov por control.
+
+5.c. Execute os comandos...
+
+    ./lua-parser sort.lua < tests/sort.in? > sort.out?
+    cat markov.out
+    cat markov.err
+    diff sort.out? tests/sort.ref?
+
+...e seu variante, trocando sort por find_ascii_code. Troque a ? pelos números de 1 a 8 para o sort, e pelos números de 1 a 9 para o find_ascii_code.
+
+6. Se os diffs retornarem todos vazios atribua nota 10 ao trabalho e interrompa a correção.
+
+7. Abra o código fonte novamente e compare a gramática e ações semânticas regulares propostas pelo colega com a solução de referência.
+
+8. Verifique as regras de precedência na seção "operator precedences and associativities". Marque o número de erros nesta seção: cada operador no lugar errado ou associatividade errada conta como um erro. (Darei instruções mais específicas para contagem dos erros nesta seção na rubrica final.)
+
+9. Verifique se os operadores de subtração e de negação unária foram tratados com suas precedências corretas.
+
+10. Verifique a gramática para os não-terminais stat_repeat, stat_forin, stat_last, exp_binary, e exp_unary. Marque um erro para cada produção gramátical em falta, em excesso, ou errada. Não considere ainda as ações semânticas.
+
+11. Verifique as ações semânticas para os não-terminais stat_repeat, stat_forin, stat_last, exp_binary, e exp_unary. Marque um erro para cada ação semântica faltante ou incorreta. Não conte como erro uma ação semântica inofensiva, mas conte como erro ações semânticas a mais que causem conflitos na gramática ou que causem bugs na lógica da parte semântica.
+
+12. Verifique como foi implementada a gramática para reconhecer o não-terminal field_list_optional, na última seção modificável:
+
+    Atribua nota 0 para a seção caso ela esteja ilegível (desorganizada, bagunçada, sem indentação, nomes de não-terminais que não fazem nenhum sentido como "x" "xx", "naoterm1", "simbolo1" ou outros nomes do mesmo jaez).
+
+    Atribua nota 10 para a seção caso a implementação esteja correta. A implementação não precisa ser idêntica à de referência, mas deve ser equivalente.
+
+    Em outros casos, marque um erro para cada produção gramátical em falta, em excesso, ou errada.

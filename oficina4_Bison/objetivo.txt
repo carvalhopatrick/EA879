@@ -1,0 +1,17 @@
+Oficina 4 - GNU Bison
+------------------------------
+Nesta oficina veremos construiremos um interpretados "de verdade", para um fragmento da linguagem Lua. Para conseguir isso, você deve integrar seus conhecimentos sobre análise léxica, análise sintática, e análise semântica em um todo coerente. O analisador léxico já está pronto, bem como todo o aparato necessário para a análise semântica. A maior parte da gramática também já está pronta, mas você deverá completar as produções gramaticais e ações semânticas que faltam para terminar a fração do interpretador que implementaremos.
+
+O fragmento da linguagem Lua que implementaremos terá as seguintes funcionalidades:
+
+- A gramática da linguagem completa passará pela análise sintática, embora parte da linguagem não terá efeito semântico (será analisada pelo parser mas nada "acontecerá": o interpretador mostrará uma mensagem de alerta nesses casos de partes da linguagem não implementadas);
+
+- Todo o mecanismo de expressões funcionará "de verdade", exceto pelas chamadas de função;
+
+- Apenas duas chamadas de função serão implementadas, à parte: print(), que mostra valores na saída padrão, e io.read(), que lê strings da entrada padrão. Para facilitar a implementação, essas funcionalidades serão implementadas como palavras-reservadas diferenciadas, e não como chamadas de função;
+
+- As estruturas de controle "if..then..elseif..then..else..end" funcionarão "de verdade", e poderá haver vários níveis de ifs aninhados, as outras estruturas de controle (incluindo funções) não serão implementadas (podem estar no código, mas nada acontecerá);
+
+- Atribuição e leitura de variáveis funcionarão "de verdade", mas o interpretador não fará diferença entre variáveis locais e globais (variáveis locais funcionarão como se fossem globais);
+
+- Tabelas não serão implementadas (podem estar no código, mas não terão efeito).

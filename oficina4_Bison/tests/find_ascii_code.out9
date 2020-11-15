@@ -1,0 +1,5 @@
+Enter a code between 0 and 127 (inclusive):
+this is the code for the "delete" control character ('\x7F' or '\127') in the ASCII
+table --- curiosity: the delete code is 127, because in binary this number is
+represented with all bits set, and in a teletype tape, characters already typed and
+punched could be deleted by punching all the other holes in the tape. Neat, ain't it?
