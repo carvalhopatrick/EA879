@@ -151,17 +151,17 @@ stat_disabled_control:
 
 stat_while: WHILE { cond_push(false); warn("while loop"); } exp DO block END { cond_pop(); };
 
-stat_repeat: REPEAT block UNTIL { cond_push(false); warn("repeat loop"); } exp { cond_pop(); };
+stat_repeat: REPEAT { cond_push(false); warn("repeat loop"); } block UNTIL  exp { cond_pop(); };
+/* <<< ^ */
 
 stat_for: FOR NAME SET { cond_push(false); warn("for loop"); } exp COMMA exp step_spec DO block END { cond_pop(); };
-/* <<< ^ */
 
 step_spec:
       COMMA exp
     |
     ;
 
-stat_forin: FOR name_list IN exp_list { cond_push(false); warn("forin loop"); } DO block END { cond_pop(); };
+stat_forin: FOR name_list IN { cond_push(false); warn("for in loop"); } exp_list DO block END { cond_pop(); };
 /* <<< ^ */
 
 stat_function: FUNCTION { cond_push(false); warn("function"); } function_name function_body { cond_pop(); };
@@ -375,13 +375,13 @@ table_constructor: OPEN_CURLY { cond_push(false); warn("table"); } field_list_op
 
 field_list_optional:
       field_list
-    |
+    | 
     ;
 
 field_list:
-      field
-    | field field_sep field
-    | field field_sep field field_sep
+      field_list field_sep field
+    | field_list field_sep
+    | field
     ;
 
 field:

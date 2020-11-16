@@ -10,7 +10,7 @@ if [ "$?" != "0" ]; then
     echo Error creating scanner!
     exit 1
 fi
-gcc -o lua-parser lua-lexer.c lua-parser.tab.c lua-semantics.c -Wall -lm
+gcc -o lua-parser lua-lexer.c lua-parser.tab.c lua-semantics.c -Wall -lm -std=gnu99
 if [ "$?" != "0" ]; then
     echo Error creating executable!
     exit 1
