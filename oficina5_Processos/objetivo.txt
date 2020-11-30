@@ -1,0 +1,3 @@
+Oficina 5 - Processos
+------------------------------
+O objetivo dessa oficina é começar a entender como funcionam processos no UNIX, e, por extensão, em sistemas operacionais de forma geral. Iremos também criar um primeiro programa com processamento paralelo bem simples, como introdução ao processamento concorrente.

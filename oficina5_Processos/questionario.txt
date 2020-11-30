@@ -1,0 +1,76 @@
+Oficina 5 - Processos
+------------------------------
+Preencha suas respostas diretamente neste arquivo, abaixo das perguntas. Submeta o arquivo preenchido sem mudar seu nome.
+
+A numeração das questões corresponde aos passos do roteiro (roteiro.txt).
+
+------------------------------
+6 ->
+a. O que é notavelmente diferente na listagem do comando "ps -ux" após a interrupção do comando com CTRL+Z, em comparação com a interrupção do comando com CTRL+C?
+
+	Após interromper com Ctrl+Z, o programa find-primes aparece na lista de processos. Após interromper com Ctrl+C, o programa não aparece na lista.
+
+b. O que acontece após você executar o comando "fg"?
+
+	O programa volta a ser executado.
+
+7 ->
+a. Qual o status do find-primes após a interrupção do comendo com CTRL+Z?
+
+	Status "T" 
+
+b. O que esse status significa?
+
+	"Stopped by job control signal" - o processo foi interompido por um sinal SIGSTOP
+
+c. Qual o status do find-primes após a execução do comando bg?
+
+	Status "R"
+
+d. O que esse status significa?
+
+	"running or runnable (on run queue)" - o processo está em execução
+
+e. O que você nota no conteúdo de prime-numbers.txt após alguns minutos depois de executar o bg?
+
+	Os números primos descobertos pelo programa vão sendo adicionados ao arquivo .txt, ao invés de serem mostrados na saída padrão.
+
+f. O que isso diz a respeito do processo find-primes?
+
+	O processo continua rodando, e apesar de um tempo de execução razoavelmente longo, não encontrou muitos números primos.
+
+10 ->
+a. O que aconteceu na execução do comando "./find-primes-parallel-naive 8 8"?
+
+	O programa retornou 8 vezes o mesmo número primo.
+
+b. Analise o código fonte do comando e pense sobre o funcionamento da chamada fork(): por que você acha que o fenômeno acima aconteceu? (* Use o semi-spoiler no arquivo de rubrica se você travar completamente.)
+
+	Isso ocorre pois todos subprocessos criados pela chamada fork() acabam tendo a mesma semente para a função geradora de números pseudoaleatórios. Sendo assim, todos vão testar a mesma sequência de números.
+
+12 ->
+a. Compare o tempo "real" do primeiro comando com o tempo "real" do segundo comando (eles são quase iguais, o primeiro é muito maior que o outro, etc.)?
+
+	O tempo real do primeiro comando é muito maior que o tempo real do segundo (cerca de 2x).
+
+b. Por que isso acontece?
+
+	Pois no segundo comando, a busca de números primso é dividida em 4 processos, que podem ser alocados pra múltipos núcleos do processador e rodar simultaneamente. 
+
+c. Compare o tempo "real" [[user]] do primeiro comando com o tempo "real" [[user]] do segundo comando (eles são quase iguais, o primeiro é muito maior que o outro, etc.)?
+
+	O tempo de user do primeiro comando é um pouco menor que o do segundo comando. (cerca de 20%)
+
+d. Dê um chute de por que isso acontece (em semelhança ou contraste com o que acontece nas respostas "a/b")?
+
+	Pois esse tempo "user" é a soma do tempo de uso de CPU de todos os processos criados ao executar o programa, enquanto o tempo real é o tempo que o programa realmente demorou para terminar.
+
+15 ->
+a. Dê um chute sobre as vantagens e desvantagens relativas da estratégia 1 (paralelizar preservando a lógica) versus a estratégia 2 (otimizar a lógica sem paralelizar). Leve em conta aspectos como complexidade de desenvolvimento, complexidade de manutenção, fragilidade do resultado (possibilidade de introduzir bugs), e aceleração obtida (leve em conta as medidas que você fez na etapa 14).
+
+	A estratégia 2 (otimização de lógica) apresentou um ganho de performance muito grande em relação ao programa original, porém exige uma boa habilidade matemática e lógica do desenvolvedor. A estratégia 1 (paralelização) é uma boa escolha para computadores potentes, com muitos núcleos. Porém, no meu computador, teve um desempenho pior que a estratégia 2, e também exige mais cautela ao desenvolver o programa, para não repetir resultados.
+
+b. Por que você acha que eu optei em escrever um programa para gerar o teste no arquivo de inclusão prime-test-skip2-3-5-7-11.inc ao invés de escreve-lo na mão?
+
+	Além de ser uma tarefa muito longa e tediosa, ao escrever os testes na mão é muito fácil que haja algum erro, que provavelmente passaria despercebido.
+

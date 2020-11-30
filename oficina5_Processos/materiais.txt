@@ -1,0 +1,7 @@
+Oficina 5 - Processos
+------------------------------
+Materiais necessários
+
+1. Acesso a um terminal Linux de linha de comando
+2. As ferramentas: ps, top (ou htop), gcc
+3. Um editor de textos

@@ -1,0 +1,15 @@
+Oficina 5 - Processos
+------------------------------
+Utilize esta rubrica para verificar seu próprio trabalho. Para a correção pelos pares, utilize o arquivo rubrica-final.txt (será disponibilizado na fase de correção).
+------------------------------
+A rubrica de correção desta oficina será simples: cada item terá avaliação binária (correto ou incorreto). Todos os itens tem  peso 1.
+
+- Critério para os itens Q6.a. Q6.b. Q7.a. Q7.b. Q7.c. Q7.d. Q7.e. Q7.f. Q10.a. Q12.a. Q12.b. Q12.c.
+
+  Avalie se a resposta está correta. A resposta pode ser sucinta, mas tem que ser inteligível e correta.
+
+- Critério para os itens Q10.b. Q12.d. Q15.a. Q15.b.
+
+  Avalie se foi feito um chute esforçado e razoável na resposta. O chute não precisa estar correto, mas não pode ser evasivo ("não sei", "não tenho como responder", etc.) nem absurdo. Lembre-se dos critérios que desenvolvemos na Oficina 1.
+
+* Semi-spoiler do item 10.b. : Se você não conhece _nada_ sobre números pseudo-aleatórios, talvez você precise se perguntar um pouquinho em como funções do tipo rand() ou pseudo_random_next() funcionam. Aliás, o código da pseudo_random_next() está em pseudo_random.c.

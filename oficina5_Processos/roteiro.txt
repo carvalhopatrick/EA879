@@ -1,0 +1,279 @@
+Oficina 5 - Processos
+------------------------------
+Como usar este roteiro?
+
+Siga atentamente os itens do roteiro
+
+Siga os itens em ordem: alguns itens dependem dos itens anteriores
+
+As perguntas que estão *neste arquivo* são para reflexão e não devem ser respondidas no arquivo questionario.txt
+
+Os itens marcados com -> são os que tem perguntas para entregar no questionário (arquivo questionario.txt). Atenção: esses itens podem depender da execução dos itens anteriores!
+
+------------------------------
+Nesta oficina usaremos programas que buscam por grandes números primos como motivação para processos que levam longo tempo para executar.
+
+NOTA: Você não precisa executar todos os processos do roteiro até o final (alguns são muito longos)! Para algumas etapas, uma vez que você se convencer que tem a respsta correta, você pode interromper o processo ou então simplesmente passar para a etapa seguinte. Todas as etapas de benchmarking (com o comando time) precisam ser executadas até o final.
+
+
+1. Abra e leia o código fonte find-primes.c. Você consegue entender o que o programa faz pela leitura do seu código? Em que trechos você tem dificuldade de compreender a lógica do programa?
+
+2. Compile e execute o find-primes.
+
+    gcc -o find-primes find-primes.c pseudo-random.c -Wall -lm
+
+    - O comando acima é bem sucedido? Caso contrário onde está o problema? Lembre-se das oficinas anteriores e o solucione.
+
+    ./find-primes 1
+
+3. Faça o benchmarking da execução do find-primes, executando o seguinte programa:
+
+    time ./find-primes 1
+
+    - Além da saída do programa find-primes, você deverá ver uma saída adicional, do programa time, com três linhas:
+
+        real    0m12.256s
+        user    0m12.252s
+        sys     0m0.004s
+
+        Esses números indicam os tempos de execução do programa:
+
+        - real: o tempo cronológico (tempo real, ou "tempo medido por um relógio de parede", às vezes abreviado como "wall time");
+        - user: o tempo efetivo de processamento do programa (só conta o tempo de execução, não mede o tempo em que o programa ficou parado esperando para executar);
+        - sys: o tempo gasto pelo programa em execução em chamadas do sistema.
+
+        O tempo user + o tempo sys indica o quanto o programa ocupou os processadores.
+
+4. Liste os seus processos em execução no sistema com o comando ps:
+
+    ps -ux
+
+    Você deve obter um resultado mais ou menos assim:
+
+    USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+    valle     5339  0.0  0.0  11144   312 ?        Ss   Aug18   0:00 ssh-agent
+    valle     5581  0.0  0.0  18652  3672 pts/0    S+   Aug18   0:00 -su
+    valle    13966  0.0  0.0  76928  4084 ?        Ss   Aug06   0:00 /lib/systemd/systemd --user
+    valle    13967  0.0  0.0 109808   488 ?        S    Aug06   0:00 (sd-pam)
+    valle    14075  0.0  0.0  11304   312 ?        Ss   Aug06   0:00 ssh-agent
+    valle    28089  0.0  0.0 103856  3608 ?        S    20:05   0:00 sshd: valle@pts/0
+    valle    28090  0.0  0.0  25260  5820 pts/0    Ss   20:05   0:00 -bash
+    valle    29221  0.0  0.0  42000  3656 pts/0    R+   20:43   0:00 ps -ux
+
+    - A primeira coluna é o usuário que lançou o processo (você, pois estamos listando apenas os seus processos)
+
+    - A segunda coluna é "process id", um número único que identifica cada processo
+
+    - A última coluna é o comando que lançou o processo
+
+    - As colunas intermediárias são informações e estatísticas sobre o processo, em particular, a coluna STAT é o estado atual do processo. Pesquisando sobre o comando ("man ps") você encontrará as seguintes informações:
+
+        PROCESS STATE CODES
+           Here are the different values that the s, stat and state output specifiers (header "STAT" or "S") will display to describe the state of a process:
+
+                   D    uninterruptible sleep (usually IO)
+                   R    running or runnable (on run queue)
+                   S    interruptible sleep (waiting for an event to complete)
+                   T    stopped by job control signal
+                   t    stopped by debugger during the tracing
+                   W    paging (not valid since the 2.6.xx kernel)
+                   X    dead (should never be seen)
+                   Z    defunct ("zombie") process, terminated but not reaped by its parent
+
+           For BSD formats and when the stat keyword is used, additional characters may be displayed:
+
+                   <    high-priority (not nice to other users)
+                   N    low-priority (nice to other users)
+                   L    has pages locked into memory (for real-time and custom IO)
+                   s    is a session leader
+                   l    is multi-threaded (using CLONE_THREAD, like NPTL pthreads do)
+                   +    is in the foreground process group
+
+    - Preste atenção em particular nos status S (sleeping), T (stopped), e R (running).
+
+    - Note que a última linha quase sempre será o próprio comando ps!
+
+5. Inicie a execução de um processo longo:
+
+    ./find-primes 100
+
+    - Após alguns segundos, interrompa a execução do processo com as teclas CTRL+C
+
+    - Liste seus processos em execução com o comando "ps -ux". Você encontra o find-primes?
+
+6 -> Inicie a execução de um processo longo:
+
+    ./find-primes 100
+
+    - Após alguns segundos, interrompa a execução do processo com as teclas CTRL+Z - note que o feedback visual desta interrupção é diferente do CTRL+C
+
+    - Liste seus processos em execução com o comando "ps -ux". -> Você encontra o find-primes?
+
+    - Digite o seguinte comando:
+
+    fg
+
+    -> O que acontece?
+
+7 -> Inicie a execução de um processo longo, e redirecione sua saída para um arquivo:
+
+    ./find-primes 100 > prime-numbers.txt
+
+    - Após alguns segundos, interrompa a execução do processo com as teclas CTRL+Z e visualize o conteúdo do arquivo com a saída do programa:
+
+        cat prime-numbers.txt
+
+    - Liste seus processos em execução com o comando "ps -ux". Você encontra o find-primes?
+
+    - Digite o seguinte comando:
+
+    bg
+
+    - Liste seus processos em execução com o comando "ps -ux". -> Você nota alguma diferença?
+
+    - Marque um despertador para 4-5 minutos, e continue trabalhando nas próximas etapas da oficina. Quando o despertador tocar, volte a visualizar o arquivo com a saída do programa:
+
+        cat prime-numbers.txt
+
+    -> O que você nota no conteúdo de prime-numbers.txt? O que isso diz a respeito do processo find-primes?
+
+8. Visualize os processos em execução usando os comandos top e htop:
+
+    - Digite o comando:
+
+        top
+
+    - O comando abrirá uma tela de visualização de processos. Brinque com as seguintes teclas:
+
+        ? - Abre uma tela de ajuda
+        t - Alterna entre diferentes sumarios das tarefas no topo da tela
+        m - Idem para memória
+        V - Alterna visualização da árvore de processos (qual processo lançou qual)
+        q - Sai do top
+
+    - Digite o comando:
+
+        htop
+
+    - Se estiver disponível (nem todos os sistemas têm o htop instalado), o comando abrirá uma tela (bem mais bonita) de visualização de processos. Brinque com as seguintes teclas:
+
+        F1 - Abre uma tela de ajuda
+        F2 - Abre uma tela de configuração
+        F5 - Alterna visualização da árvore de processos (qual processo lançou qual)
+        F10 ou q - Sai do htop
+
+9. Quando um procedimento é lento, uma possibilidade de acelerá-lo é paralelizar seu processamento, i.e., executa-lo em diversos processos simultâneos.
+
+    A busca de números primos aleatórios é uma tarefa trivial de paralelizar, porque não há necessidade de coordenar os diferentes processos paralelos: eles podem rodar de forma totalmente independente.
+
+    Nota 1: haveria, em princípio, necessidade de coordenar o output para evitar, por exemplo, que dois números se encavalassem, mas a especificação do C garante que cada execução do printf() é atômica.
+
+    Nota 2: tarefas de paralelização como essa, que consistem em execuções repetidas sem coordenação, são chamadas, em inglês de "embarassingly parallel" (https://en.wikipedia.org/wiki/Embarrassingly_parallel), que se traduziria por "constrangedoramente paralela" (no sentido de "vergonhosamente fácil").
+
+    Leia o código fonte find-primes-parallel-naive.c e compare-o com o código fonte find-primes.c. Para entender como esse código paraleliza a execução, é preciso entender a chamada fork(). Assim como uma forquilha, ela duplica a execução do programa. Ao final da chamada do fork() haverá dois processos "clones", completamente independentes, cada um com uma cópia de toda a memória do processo original. A única diferença entre os dois processos é que, em um (o processo filho) fork() retorna zero, e em outro (o processo pai) fork() retorna o PID do processo filho - essa assimetria permite ao processo pai controlar o filho, mas não vice-versa.
+
+    Ela também permite que processos pai e filho executem tarefas diferentes. Isso é muito importante em find-primes.c: o processo pai sai do loop de criação de processos (e inicia a busca de primos), e apenas o processo filho continua no loop e cria um novo processo (chamando fork() novamente). Caso isso não fosse feito o loop resultaria na criação de 2^(p-1) processos ao invés de p-1 processos!
+
+    Compile o código com o comando
+
+    gcc -o find-primes-parallel-naive find-primes-parallel-naive.c pseudo-random.c -Wall -lm
+
+10 -> O segundo parâmetro de find-primes-parallel-naive especifica quantos processos paralelos devem ser executados. Faça um experimento variando esse parâmetro:
+
+    ./find-primes-parallel-naive 8 8
+    ./find-primes-parallel-naive 8 4
+    ./find-primes-parallel-naive 8 2
+    ./find-primes-parallel-naive 8 1
+
+    -> Os resultados são os que você esperava?
+
+11. Compare e contraste o código de find-primes-parallel.c com o de find-primes-parallel-naive.c. Você consegue entender as diferenças?
+
+    Compile e execute o código com os comandos:
+
+    gcc -o find-primes-parallel find-primes-parallel.c pseudo-random.c -Wall -lm
+
+    ./find-primes-parallel 8 4
+
+12 -> Faça um benchmarking contrastando as duas versões de find-primes.
+
+    time ./find-primes 16
+
+    time ./find-primes-parallel 16 4
+
+    -> Compare o tempo "real" do primeiro comando com o tempo "real" do segundo comando.
+    -> Compare o tempo "user" do primeiro comando com o tempo "user" do segundo comando.
+
+            $> time ./find-primes 16
+                real    9m42.337s
+                user    9m51.563s
+                sys     0m0.922s
+
+            $> time ./find-primes-parallel 16 4
+                real    4m7.508s
+                user    12m2.172s
+                sys     0m1.719s
+
+
+        $> time ./find-primes 6
+                real    3m9.030s
+                user    3m6.359s
+                sys     0m0.094s
+
+            $> time ./find-primes-parallel 6 3
+                real    1m32.830s
+                user    4m6.859s
+                sys     0m0.188s
+
+            $> time ./find-primes-parallel 6 6
+                real    1m14.674s
+                user    3m53.125s
+                sys     0m0.063s
+
+13. Repita os exercícios de lançamento e interrupção de processos (items 5, 6 e 7), usando o comando:
+
+    ./find-primes-parallel 128 8
+
+    Note o que acontece com a lista de processos. Além do comando "ps -ux", você pode experimentar executar o comando "ps -uxf" para visualizar a árvore de processos (qual processo lançou qual). O resultado dessa árvore para find-primes-parallel é o que você esperava? Você também pode tentar visualizar os processos e suas árvores nos comandos top e htop.
+
+14. Compile, execute, e faça um benchmark do codigo find-primes-fast com os comandos:
+
+    gcc -o find-primes-fast find-primes-fast.c pseudo-random.c -Wall -lm
+
+    ./find-primes-fast 1
+
+    time ./find-primes-fast 16
+
+        real    1m45.605s
+        user    1m39.625s
+        sys     0m0.453s
+
+    - Compare os tempos "real" e "user" do comando acima, com os comandos anteriores (item 12).
+
+
+    - Compile, execute, e faça um benchmark do codigo find-primes-fast-parallel com os comandos:
+
+    gcc -o find-primes-fast-parallel find-primes-fast-parallel.c pseudo-random.c -Wall -lm
+
+    ./find-primes-fast-parallel 1
+
+    time ./find-primes-fast-parallel 16 4
+
+        real    0m42.169s
+        user    2m14.141s
+        sys     0m0.156s
+
+    - Compare os tempos "real" e "user" do comando acima, com os comandos anteriores (item 13).
+
+15 -> As etapas 12 a 14 mostram estratégias distintas de acelerar o código: (1) paralelizar um código existente, mudando a lógica tão pouco quanto possível (find-primes-parallel); (2) otimizar o código, sem parlelizar (find-primes-fast); (3) combinação das duas estratégias (find-primes-fast-parallel).
+
+Compare e contraste o codigo fonte find-primes.c com o find-primes-parallel.c e com find-primes-fast.c, note que uma das etapas do código (o enorme teste no arquivo de inclusão prime-test-skip2-3-5-7-11.inc) não foi escrita à mão: ela foi gerada por um programa (create-test.c).
+
+
+
+
+
+
+
+
+
