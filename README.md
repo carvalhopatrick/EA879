@@ -6,3 +6,6 @@ Creation of a simplified lexer for the Lua programming language, using Flex (htt
 
 ## Oficina 4 - Bison
 Creation of a simplified parser for the Lua programming language, using GNU Bison
+
+## Oficina 5 - Processos
+Studies about processes creation and lifecycle on Linux systems, and simple examples of parallel computing
