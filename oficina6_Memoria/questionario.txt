@@ -1,0 +1,56 @@
+Oficina 6 - Hierarquia de Memória
+------------------------------
+Preencha suas respostas diretamente neste arquivo, abaixo das perguntas. Submeta o arquivo preenchido sem mudar seu nome.
+
+A numeração das questões corresponde aos passos do roteiro (roteiro.txt).
+
+------------------------------
+9. ->
+
+a. No gráfico da prancha "all", contraste o comportamento dos programas change-light e change-light-lut quanto ao tempo de execução. Quais são as diferenças mais notáveis desse comportamento?
+
+b. O programa change-light-lut procura otimizar o tempo de execução. Essa otimização aconteceu? Em que circunstâncias?
+
+c. No gráfico da prancha "noise", acompanhe a curva do programa change-light-lut. Utilizando seu conhecimento sobre a hierarquia de memória, você consegue explicar o comportamento dessa curva?
+
+d. Ainda visualizando essa curva, você consegue "chutar" o tamanho de um ou mais níveis dos caches na memória do seu computador? (Lembre-se de que cada posição na sua LUT é um uint32_t que ocupa 4 bytes.)
+
+e. Constraste as curvas para o programa change-light-lut nas planilhas "arctic", "carpet" e "noise". Considerando o que você conhece sobre caches de memória, explique a diferença de comportamento das curvas para esses casos.
+
+OBS.: Se você ainda não abriu as imagens carpet-of-flowers.jpg e arctic-fox.jpg, faça isso agora. Caso você seja capaz de visualizar arquivos .pgm, abra também o arquivo noise-8.pgm --- caso contrário saiba que é um arquivo com ruído branco (pense em uma velha televisão analógica fora de sintonia).
+
+10. ->
+
+a. Cole aqui o resultado da saída do comando getconf -a | grep CACHE:
+
+b. A quantidade de níveis de cache e os tamanhos desses níveis corresponderam ao que você esperava ou você teve surpresas? Comente. (Lembre-se de que cada posição na sua LUT é um uint32_t que ocupa 4 bytes.)
+
+11. => Faça o upload do seu arquivo dados.pdf
+
+12. => Faça o upload do seu arquivo benchmark.pdf
+
+13. No script measure_all.sh de realização das medidas, as replicas são contadas no laço mais externo, desta forma:
+
+    for (( replica=1; replica<=3; replica++ )); do
+        for (( bits=8; bits<=29; bits++ )); do
+            for imagem in noise carpet arctic; do
+                for programa in change-light change-light-lut; do
+                    # experimento...
+                done
+            done
+        done
+    done
+
+    Suponha que eu modificasse a estrutura dos laços para que as replicas fossem contadas no laço mais interno, desta forma:
+
+    for (( bits=8; bits<=29; bits++ )); do
+        for imagem in noise carpet arctic; do
+            for (( replica=1; replica<=3; replica++ )); do
+                for programa in change-light change-light-lut; do
+                    # experimento...
+                done
+            done
+        done
+    done
+
+    a. Do ponto de vista "científico", você acha que esta modificação aumentaria ou diminuiria a robustez dos experimentos? Por quê?

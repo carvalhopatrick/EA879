@@ -1,0 +1,19 @@
+Oficina 6 - Hierarquia de Memória
+------------------------------
+Utilize esta rubrica para fazer a correção pelos pares e para verificar seu próprio trabalho antes da submissão.
+------------------------------
+Rubrica:
+
+- Foi submetido um arquivo dados.pdf? A planilha de dados está completamente preenchida? Caso negativo, atribua nota 0 ao trabalho.
+
+- Foi submetido um arquivo benchmark.pdf contendo um gráfico? O gráfico parece corresponder aos dados? Caso negativo, atribua nota 0 ao trabalho.
+
+- O gráfico do arquivo benchmark.pdf parece corresponder a um experimento corretamente realizado? (Pode haver grandes variações de um computador para o outro, mas certos comportamentos não são possíveis. Avalie se o gráfico que você recebeu corresponde a uma variação possível, ou denota erros experimentais, erros de transcrição de números, óbvia inversão de dados, etc.). Caso negativo, atribua nota 0 ao trabalho.
+
+- Quesitos 9.a, 9.b, 9.c, 9.e.: avalie se as conclusões estão compatíveis com os experimentos realizados, e com os conhecimentos que aprendemos sobre memória e caches na disciplina.
+
+- Quesito 9.d: avalie se o "chute" está compatível com os experimentos realizados -- pode haver subjetividade quanto à divisão fina dos níveis de cache, mas em traços gerais o chute tem que ser compatível com o que sabemos sobre caches e com os experimentos.
+
+- Quesito 10.a: avalie se o enunciado foi cumprido.
+
+- Quesitos 10.b e 13.a: A resposta tem que manifestar um esforço de reflexão, mas não há gabarito correto. Avalie se houve uma resposta razoavelmente completa. Rejeite respostas evasivas do tipo "não sei", "não seria capaz de responder", "é impossível dizer", etc.

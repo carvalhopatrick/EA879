@@ -1,0 +1,131 @@
+Oficina 6 - Hierarquia de Memória
+------------------------------
+Como usar este roteiro?
+
+Siga atentamente os itens do roteiro
+
+Siga os itens em ordem: alguns itens dependem dos itens anteriores
+
+As perguntas que estão *neste arquivo* são para reflexão e não devem ser respondidas no arquivo questionario.txt
+
+Os itens marcados com -> são os que tem perguntas para entregar no questionário (arquivo questionario.txt). Atenção: esses itens podem depender da execução dos itens anteriores!
+
+Os itens marcados com => são os que geram arquivos para submissão junto com a tarefa
+
+------------------------------
+Nesta oficina usaremos programas que buscam por grandes números primos como motivação para processos que levam longo tempo para executar.
+
+1. Familiarize-se com os programas change-light.c e change-light-lut.c. Se ainda não o fez, assista ao vídeo de explicação da oficina.
+
+    Os programas change-light implementam operações de processamento de imagem de alteração de brilho, contraste, e correção de gamma.
+
+    - change-light: esta versão aplica a correção diretamente nos pixels
+
+    - change-light-lut: esta versão tenta otimizar o processo criando uma LUT (lookup table) com o resultado da modificação para cada tom de cinza possível do arquivo, evitando executar operações matemáticas caras (sobretudo a exponenciação de ponto flutuante da correção de gamma) para cada pixel
+
+    - leia sobre LUTs aqui: https://en.wikipedia.org/wiki/Lookup_table
+
+2. Converta os arquivos JPEG para o formato PPM (portable pixel map) do NETPBM. Se você não conseguir instalar o NETPBM, você pode baixar os arquivos já convertidos do Moodle.
+
+    jpegtopnm carpet-of-flowers.jpg > carpet.ppm
+    jpegtopnm arctic-fox.jpg > arctic.ppm
+
+3. Faça a compilação dos programas que usaremos para o benchmark de memória, você pode utilizar o Makefile fornecido e simplesmente digitar
+
+    make
+
+    Alternativamente, se preferir, você pode compilar os programas individualmente, à mão, utilizando os comandos abaixo:
+
+    gcc -o grayscale grayscale.c -Wall -O0 -lm
+    gcc -o noisetoppm  noisetoppm.c -Wall -O0
+    gcc -o change-light change-light.c -Wall -O0 -lm
+    gcc -o change-light-lut  change-light-lut.c -Wall -O0 -lm
+
+    ATENÇÃO: é fundamental desligar as otimizações do compilador com a chave -O0, caso contrário os acessos de memória não serão feitos de forma previsível e os resultados do benchmark não serão os esperados.
+
+
+OBSERVAÇÃO: Você pode realizar as etapas 4, 5 e 6 automaticamente com o script de bash prepare_images.sh
+
+4. Converta o arquivo carpet-of-flowers.ppm para tons de cinza (portable gray map) com diferentes profundidades de bit. Com 8 bits, ele será convertido para 256 tons de cinza, com 10 bits, para 1024 tons de cinza, e assim por diante. Use os comandos abaixo:
+
+    ./grayscale 8  < carpet.ppm > carpet-8.pgm
+    ./grayscale 9 < carpet.ppm  > carpet-9.pgm
+    ./grayscale 10 < carpet.ppm > carpet-10.pgm
+    ./grayscale 11 < carpet.ppm > carpet-11.pgm
+    etc.
+    ./grayscale 29 < carpet.ppm > carpet-29.pgm
+
+    OBS: Nem todos os programas exibem corretamente os arquivos .pgm com mais de 8 bits. A maior parte dos programas também se recusa a abrir arquivos .pgm com mais de 16 bits, que é o máximo permitido pelo padrão. Isso não será um problema para a atividade, pois não é preciso visualizar os resultados, só medir os tempos.
+
+5. Faça as mesmas conversões trocando "carpet" por "arctic"
+
+6. Produza os arquivos com ruído branco, utilizando os comandos abaixo:
+
+    ./noisetoppm 4096 2160 13 | ./grayscale 8  > noise-8.pgm
+    ./noisetoppm 4096 2160 13 | ./grayscale 9  > noise-9.pgm
+    ./noisetoppm 4096 2160 13 | ./grayscale 10 > noise-10.pgm
+    ./noisetoppm 4096 2160 13 | ./grayscale 11 > noise-11.pgm
+    etc.
+    ./noisetoppm 4096 2160 13 | ./grayscale 29 > noise-29.pgm
+
+7. O benchmarking consistirá em fazer diversas medidas de tempo de execução dos dois programas (change-light e change-light-lut) para todas as imagens que geramos acima. Os programas consistem em diversos loops, que estão instrumentalizados para medir seu tempo de execução. Como o tempo de execução pode flutuar de uma execução para a outra, faremos três réplicas de cada execução.
+
+    - Você pode utilizar os scripts measure_all.sh e sort_measure.sh para gerar um arquivo com todas as medidas, em uma ordem conveniente para cortar e colar diretamente na planilha de benchmarking. Use os comandos abaixo:
+
+    ./measure_all.sh | tee all_measures.csv
+    ./sort_measures.sh
+
+    - Você pode em seguida abrir o arquivo all_measures_sorted.tab em um editor de textos e copiar e colar as linhas pertinentes diretamente na planilha de benchmarking.
+
+    Para executar um benchmarking individual, utilize os comando abaixo:
+
+    ./change-light 0.8 -0.2 0.1 < {imagem}.pgm > temp.pgm
+    ./change-light-lut 0.8 -0.2 0.1 < {imagem}.pgm > temp.pgm
+
+    ATENÇÃO: O benchmark é medido em tempo de "relógio de parede". Por isso, na medida do possível, procure evitar executar outras tarefas que possam interferir no tempo de execução: feche outros programas, se você usa softwares como DropBox, suspenda temporariamente a sincronização, etc. Caso você use um computador da FEEC, procure, na medida do possível, logar em um computador em que você esteja sozinho, ou com poucos usuários.
+
+    ATENÇÃO: Iremos medir apenas o tempo de processamento (indicado como "processing (ns)" na saída de erro padrão dos programas).
+
+8. Preencha a planilha de benchmarking:
+
+    - Visite a planilha de benchmarking no endereço: https://docs.google.com/spreadsheets/d/1ZfduVv51K_TBfkwhsDJ9PHeYTBi2drr5J3I0L6bPir4/edit?usp=sharing
+
+    - Faça uma cópia pessoal desta planilha para o seu próprio Google Drive usando o comando "File... Make a copy" / "Arquivo... Fazer uma cópia".
+
+    - Preencha a prancha "Medidas" da planilha, com cuidado para não sobrescrever as colunas "Média" e "Desvio", que são colunas de fórmulas.
+
+    - A coluna "Desvio" mede o desvio de cada medida em relação à "Média". Caso alguma medida esteja com um desvio muito grande (20% ou mais), deve ter acontecido algum problema durante a medida (talvez algum outro programa tenha entrado em execução, por exemplo). Nesse caso, refaça a medida daquela imagem, ou pelo menos daquela réplica.
+
+9. -> Observe os gráficos nas pranchas "arctic", "carpet", "noise" e "all" da planilha. Responda as perguntas do questionário.
+
+10. -> Use o comando getconf para obter informações sobre a hierarquia de memória no seu computador:
+
+    getconf -a | grep CACHE
+
+    A saída desse comando deve mostrar os seguintes números (além de diversas outras informações):
+
+    LEVEL1_ICACHE_SIZE - Tamanho do cache nível 1 de instruções
+    LEVEL1_DCACHE_SIZE - Tamanho do cache nível 1 de dados
+    LEVEL2_CACHE_SIZE  - Tamanho do cache nível 2 de dados
+    LEVEL3_CACHE_SIZE  - Tamanho do cache nível 3 de dados
+    LEVEL4_CACHE_SIZE  - Tamanho do cache nível 4 de dados
+
+    Os tamanhos são indicados em bytes, e um valor 0 indica que aquele nível de cache não está presente - ou pelo menos que o getconf não encontrou informações sobre ele.
+
+11. => Faça uma "impressão" para PDF apenas da prancha "Gráficos" da sua planilha.
+
+    Utilize o comando "File... Print" / "Arquivo... Impressão") e nas opções selecione apenas a planilha corrente.
+
+    Para Melhorar a visualização, utilize o tamanho de papel A4 em modo paisagem, escala "Fit to width" / "Ajustar na largura", margens Normais. Formatação: ative "mostrar grade".
+
+    Salve a impressão no arquivo dados.pdf.
+
+12. => Faça uma "impressão" para PDF apenas do gráfico com prancha "all" da sua planilha.
+
+    Utilize o comando "File... Print" / "Arquivo... Impressão") e nas opções selecione apenas a planilha corrente.
+
+    Para Melhorar a visualização, utilize o tamanho de papel A4 em modo paisagem, escala "Fit to width" / "Ajustar na largura", margens Normais. S
+
+    alve a impressão no arquivo benchmark.pdf.
+
+13. -> Os scripts prepare_images.sh measure_all.sh e sort_measures.sh trazem grande conveniência para esta oficina. Abra o código desses scripts de shell e tente entender como eles funcionam. Em particular, note o poder da combinação de programas simples (e.g., grep e cut) usando o mecanismo de redirecionamento de entrada e saída do Unix.

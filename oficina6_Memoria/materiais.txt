@@ -1,0 +1,18 @@
+Oficina 6 - Hierarquia de Memória
+------------------------------
+Materiais necessários
+
+1. Acesso a um terminal Linux de linha de comando
+2. As ferramentas: gcc getconf
+
+Materiais opcionais úteis
+
+- Para converter as imagens originais: o comando jpegtopnm do pacote NETPBM
+- Para visualizar as imagens em tons de cinza: um visualizador compatível com o formato NETPBM
+                                               OU o comando pnmtojpeg do pacote NETPBM
+                                               OU o comando pnmtopng do pacote NETPBM
+
+  ATENÇÃO: o pacote NETPBM não é obrigatório: você pode baixar as imagens diretamente no formato PPM no Moodle.
+
+- Para compilar facilmente os programas: make
+- Para preparar as medidas para entrada rápida na planilha: cut grep sed sort tr

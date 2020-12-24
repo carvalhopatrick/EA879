@@ -1,0 +1,3 @@
+Oficina 6 - Memória e Caches
+------------------------------
+O objetivo dessa oficina é visualizar, de forma bem concreta, as consequências da hierarquia de memória e do funcionamento dos caches. Para isso, iremos constrastar o tempo de execução de duas versões de um programa de processamento de imagens, em várias imagens diferentes.
