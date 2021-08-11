@@ -9,13 +9,23 @@ A numeração das questões corresponde aos passos do roteiro (roteiro.txt).
 
 a. No gráfico da prancha "all", contraste o comportamento dos programas change-light e change-light-lut quanto ao tempo de execução. Quais são as diferenças mais notáveis desse comportamento?
 
+	Os testes com o change-light mostraram um tempo de execução praticamente constante para qualquer qntd. de tons de cinza. Já o change-light-lut tem um tempo de execução bem menor, mas aumentando exponencialmente com o aumento da profundidade de cores.
+
 b. O programa change-light-lut procura otimizar o tempo de execução. Essa otimização aconteceu? Em que circunstâncias?
+
+	Sim, aconteceu em todas circunstâncias. Embora nas imagens com maior quantidade de tons de cinza o tempo de execução se aproximou das execuções de "change-light".
 
 c. No gráfico da prancha "noise", acompanhe a curva do programa change-light-lut. Utilizando seu conhecimento sobre a hierarquia de memória, você consegue explicar o comportamento dessa curva?
 
+	Conforme se aumenta o qntd. de tons de cinza da imagem, aumenta-se a quantidade de valores necessários na LUT. Com isso, fica cada vez mais difícil a LUT ser totalmente armazenada nos caches da CPU, tendo que acessar a RAM, que acaba atrasando o processo.
+
 d. Ainda visualizando essa curva, você consegue "chutar" o tamanho de um ou mais níveis dos caches na memória do seu computador? (Lembre-se de que cada posição na sua LUT é um uint32_t que ocupa 4 bytes.)
 
+	A curva apresenta uma mudança drástica de inclinação em 524.288 tons. Multiplicando por 4 bytes por tom, obtemos o valor de cerca de 2MB para um dos caches.
+
 e. Constraste as curvas para o programa change-light-lut nas planilhas "arctic", "carpet" e "noise". Considerando o que você conhece sobre caches de memória, explique a diferença de comportamento das curvas para esses casos.
+
+	A imagen "arctic" é a mais rápida, pois para uma dado nº máx. de tons cinza, irá apresentar uma qntd. total de possíveis valores de mudança de gama/contraste/etc menor do que as outras imagens. Assim, mais valores vão estar prontamente acessíveis no cache.
 
 OBS.: Se você ainda não abriu as imagens carpet-of-flowers.jpg e arctic-fox.jpg, faça isso agora. Caso você seja capaz de visualizar arquivos .pgm, abra também o arquivo noise-8.pgm --- caso contrário saiba que é um arquivo com ruído branco (pense em uma velha televisão analógica fora de sintonia).
 
@@ -23,7 +33,26 @@ OBS.: Se você ainda não abriu as imagens carpet-of-flowers.jpg e arctic-fox.jp
 
 a. Cole aqui o resultado da saída do comando getconf -a | grep CACHE:
 
+	"LEVEL1_ICACHE_SIZE                 32768
+	LEVEL1_ICACHE_ASSOC                8
+	LEVEL1_ICACHE_LINESIZE             64
+	LEVEL1_DCACHE_SIZE                 32768
+	LEVEL1_DCACHE_ASSOC                8
+	LEVEL1_DCACHE_LINESIZE             64
+	LEVEL2_CACHE_SIZE                  262144
+	LEVEL2_CACHE_ASSOC                 8
+	LEVEL2_CACHE_LINESIZE              64
+	LEVEL3_CACHE_SIZE                  4194304
+	LEVEL3_CACHE_ASSOC                 16
+	LEVEL3_CACHE_LINESIZE              64
+	LEVEL4_CACHE_SIZE                  0
+	LEVEL4_CACHE_ASSOC                 0
+	LEVEL4_CACHE_LINESIZE              0
+	
+
 b. A quantidade de níveis de cache e os tamanhos desses níveis corresponderam ao que você esperava ou você teve surpresas? Comente. (Lembre-se de que cada posição na sua LUT é um uint32_t que ocupa 4 bytes.)
+
+	Não correspondeu. Imaginei que um dos caches (ou a soma de todos caches) terminava no ponto de maior mudança de inclinação da curva, que foi em 524.288 tons, correspondendo a cerca de 2MB. O pontos "corretos" seriam 8.192 (L1), 65.536 (L2) e 1.048.576 (L3)
 
 11. => Faça o upload do seu arquivo dados.pdf
 
@@ -54,3 +83,5 @@ b. A quantidade de níveis de cache e os tamanhos desses níveis corresponderam 
     done
 
     a. Do ponto de vista "científico", você acha que esta modificação aumentaria ou diminuiria a robustez dos experimentos? Por quê?
+	
+		Diminuiria a robustez, pois para cada par de imagem-quantidade de tons, as medições seriam feitas num intervalo de tempo muito pequeno. Se o processador estivesse ocupado, todas as 3 réplicas estariam erradas
