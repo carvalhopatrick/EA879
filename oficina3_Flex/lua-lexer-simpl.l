@@ -64,7 +64,6 @@ NUMBER          -?([0-9]+\.[0-9]+|[0-9]+\.?|\.[0-9]+)([eE][-+]?[0-9]+)?
 NUMBER_HEXA     -?0[xX][a-fA-F0-9]+
 DOUBLE_HYPHEN   --
 WHITESPACE      [ \t\v]+
-EOL             [ \n\r]+
 /* " */
 
 %x string_context comment_context long_comment_context short_comment_context
