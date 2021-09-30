@@ -167,14 +167,7 @@ while    return WHILE;
     }
 }
 <string_context>{DOUBLE_QUOTE} {
-    if (string_start == String_start_double) {
-        BEGIN(INITIAL);
-        stop_string();
-        return STRING;
-    }
-    else {
-        accumulate_string(yytext);
-    }
+    <<<complete o codigo>>>
 }
 <string_context>{CLOSE_LONG} {
     if (string_start == strlen(yytext)) {
@@ -213,8 +206,7 @@ while    return WHILE;
     comment_start = Comment_start_short;
 }
 <comment_context>{OPEN_LONG} {
-    if (start_of_comment)
-    comment_start = false;
+    <<<complete o codigo>>>
 }
 <comment_context>{CLOSE_LONG} {
     <<<complete o codigo>>>
