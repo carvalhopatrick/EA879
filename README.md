@@ -1,5 +1,5 @@
 # EA879 - 2s2020
-Programs and files developed during the course of EA879 - Introdução ao Software Básico (Introduction to System Software), at University of Campinas
+Programs and files developed during the college course of EA879 - Introduction to System Software, at University of Campinas (2nd semester of 2020)
 
 ## Oficina 3 - Flex
 Creation of a simplified lexer for the Lua programming language, using Flex (https://github.com/westes/flex)
